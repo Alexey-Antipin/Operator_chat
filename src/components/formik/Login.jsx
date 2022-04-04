@@ -1,18 +1,32 @@
 import React from "react";
+import * as Yup from "yup";
 import { useFormik } from 'formik';
 import "./Login.scss";
 
 export const Login = () => {
 
+    const initialValues = {
+        firstName: '',
+        lastName: '',
+        email: '',
+    }
+
+    const onSubmit = values => {
+        alert(JSON.stringify(values, null, 2));
+    }
+
+    const validationSchema = Yup.object({
+        firstName: Yup.string().required('Required'),
+        lastName: Yup.string().required('Required'),
+        email: Yup.string()
+            .email('Invalid email format')
+            .required('Required')
+    })
+
     const formik = useFormik({
-        initialValues: {
-            firstName: '',
-            lastName: '',
-            email: '',
-        },
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
-        },
+        initialValues,
+        onSubmit,
+        validationSchema
     });
 
     return (
@@ -34,6 +48,10 @@ export const Login = () => {
                         onChange={formik.handleChange}
                         value={formik.values.firstName}
                     />
+                    {
+                        formik.errors.firstName ?
+                            <div>{formik.errors.firstName}</div> : null
+                    }
                 </div>
 
                 {/* Фамилия */}
@@ -51,6 +69,10 @@ export const Login = () => {
                         onChange={formik.handleChange}
                         value={formik.values.lastName}
                     />
+                    {
+                        formik.errors.lastName ?
+                            <div>{formik.errors.lastName}</div> : null
+                    }
                 </div>
 
                 {/* Почта */}
@@ -68,6 +90,10 @@ export const Login = () => {
                         onChange={formik.handleChange}
                         value={formik.values.email}
                     />
+                    {
+                        formik.errors.email ?
+                            <div>{formik.errors.email}</div> : null
+                    }
                 </div>
 
                 <button
