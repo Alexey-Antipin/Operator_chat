@@ -1,8 +1,10 @@
+import { Login } from "../components/formik/Login";
+import "./App.scss";
 
 function App() {
   return (
     <div className="App">
-      <p>Hello People !</p>
+      <Login/>
     </div>
   );
 }
