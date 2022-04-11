@@ -1,0 +1,33 @@
+.Page {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    .Page__Leftblock {
+        width: 25%;
+        border: 2px solid blue;
+        border-radius: 0px 15px 15px 0px;
+        background-color: rgb(35, 94, 255);
+    }
+    .Page__Mainblock {
+        width: 50%;
+        border: 2px solid green;
+        background-color: rgb(209, 216, 235);
+        .Page__Name {
+            height: 5%;
+            background-color: rgb(187, 202, 243);
+        }
+        .Page__Dialogs {
+            height: 90%;
+            background-color: rgb(225, 233, 255);
+        }
+        .Page__Text {
+            height: 5%;
+            background-color: rgb(160, 164, 173);
+        }
+    }
+    .Page__Rightblock {
+        width: 25%;
+        border: 2px solid rgb(252, 8, 0);
+        background-color: rgb(235, 240, 255);
+    }
+}

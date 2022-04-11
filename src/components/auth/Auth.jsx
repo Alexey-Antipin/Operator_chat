@@ -2,9 +2,10 @@ import React from "react";
 import * as Yup from "yup";
 import { useFormik } from 'formik';
 import { useDispatch } from "react-redux";
-import "./Login.scss";
+import "./Auth.scss";
+import { Link, useNavigate } from "react-router-dom";
 
-export const Login = () => {
+export const Auth = () => {
 
     const initialValues = {
         password: '',
@@ -15,8 +16,8 @@ export const Login = () => {
 
     const onSubmit = values => {
         dispatch({
-            type:"CREATE_USER",
-            payload: values
+            type: "AUTH_USER",
+            payload: values,
         })
     }
 
@@ -33,22 +34,30 @@ export const Login = () => {
         validationSchema
     });
 
+    const navigate = useNavigate()
+
+    const SignInput = () => { 
+        setTimeout(() => {
+            navigate("/Page") 
+        }, 3000);
+    }
+
     return (
-        <div className="Formik">
+        <div className="Auth">
             <form onSubmit={formik.handleSubmit}>
 
                 {/* Почта */}
                 <div>
                     <label
-                        className="Formik__label"
+                        className="Auth__label"
                         htmlFor="email">
                         Почта
                     </label>
                     <input
-                        id="email"
+                        id="Auth_email"
                         name="email"
                         type="email"
-                        className="Formik__input"
+                        className="Auth__input"
                         onChange={formik.handleChange}
                         value={formik.values.email}
                     />
@@ -61,15 +70,15 @@ export const Login = () => {
                 {/* Пароль */}
                 <div>
                     <label
-                        className="Formik__label"
+                        className="Auth__label"
                         htmlFor="firstName">
                         Пароль
                     </label>
                     <input
-                        id="password"
+                        id="Auth_password"
                         name="password"
                         type="password"
-                        className="Formik__input"
+                        className="Auth__input"
                         onChange={formik.handleChange}
                         value={formik.values.password}
                     />
@@ -80,9 +89,10 @@ export const Login = () => {
                 </div>
 
                 <button
-                    className="Formik__button"
+                    className="Auth__button"
+                    onClick={() => SignInput()}
                     type="submit">
-                    Регистрация
+                    Авторизация
                 </button>
             </form>
         </div>
