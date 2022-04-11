@@ -1,5 +1,16 @@
-const initialState = {}
+
+export const initialState = {
+    hasAccount: false,
+};
 
 export default function reducer(state = initialState, action) {
-    return state;
-}
+    switch (action.type) {
+
+        case 'TURN_USER':
+            return {
+                ...state,
+                hasAccount: action.payload
+            };
+        default: return state
+    }
+};

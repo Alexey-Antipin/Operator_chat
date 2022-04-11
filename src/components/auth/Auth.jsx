@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import { useFormik } from 'formik';
 import { useDispatch } from "react-redux";
 import "./Auth.scss";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Auth = () => {
 
@@ -16,7 +17,7 @@ export const Auth = () => {
     const onSubmit = values => {
         dispatch({
             type: "AUTH_USER",
-            payload: values
+            payload: values,
         })
     }
 
@@ -32,6 +33,14 @@ export const Auth = () => {
         onSubmit,
         validationSchema
     });
+
+    const navigate = useNavigate()
+
+    const SignInput = () => { 
+        setTimeout(() => {
+            navigate("/Page") 
+        }, 3000);
+    }
 
     return (
         <div className="Auth">
@@ -81,6 +90,7 @@ export const Auth = () => {
 
                 <button
                     className="Auth__button"
+                    onClick={() => SignInput()}
                     type="submit">
                     Авторизация
                 </button>
