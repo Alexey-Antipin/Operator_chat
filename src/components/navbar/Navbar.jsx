@@ -22,7 +22,7 @@ export const Navbar = () => {
 
     return (
         <div className="Navbar">
-            {/* {
+            {
                 ComeOut ?
                     <button
                         className="Navbar__button"
@@ -35,7 +35,7 @@ export const Navbar = () => {
                         onClick={() => SignOut()}>
                         <Link to="/Login">Выйти</Link>
                     </button>
-            } */}
+            }
         </div>
     )
 }
