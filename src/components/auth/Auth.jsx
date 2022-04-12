@@ -1,9 +1,9 @@
 import React from "react";
 import * as Yup from "yup";
 import { useFormik } from 'formik';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./Auth.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Auth = () => {
 
@@ -36,11 +36,13 @@ export const Auth = () => {
 
     const navigate = useNavigate()
 
-    const SignInput = () => { 
+    const SignInput = () => {
         setTimeout(() => {
-            navigate("/Page") 
-        }, 3000);
+            navigate("/Page")
+        }, 5000);
     }
+
+    const AuthTrue = useSelector((state) => state.reducer)
 
     return (
         <div className="Auth">
@@ -61,10 +63,9 @@ export const Auth = () => {
                         onChange={formik.handleChange}
                         value={formik.values.email}
                     />
-                    {
-                        formik.errors.email ?
-                            <div>{formik.errors.email}</div> : null
-                    }
+                    {formik.errors.email ? <>{formik.errors.email}</> : null}
+                    {AuthTrue.AuthSuccessfulTrue ? <>Авторизация прошла успешно</> : <></>}
+                    {AuthTrue.AuthSuccessfulFalse ? <>Не удалось авторизоваться</> : <></>}
                 </div>
 
                 {/* Пароль */}
@@ -82,10 +83,7 @@ export const Auth = () => {
                         onChange={formik.handleChange}
                         value={formik.values.password}
                     />
-                    {
-                        formik.errors.password ?
-                            <div>{formik.errors.password}</div> : null
-                    }
+                    {formik.errors.password ? <>{formik.errors.password}</> : null}
                 </div>
 
                 <button

@@ -36,16 +36,30 @@ export function* CreateUser({ payload }) {
 }
 
 export function* AuthUser({ payload }) {
-
-    yield firebase.auth().signInWithEmailAndPassword(
-        payload.email.trim(),
-        payload.password.trim())
-        .catch(function (error) {
-            console.log(error.code);
-            console.log(error.message);
-        });
-
-    yield put({ type: "TURN_USER", payload: true })
+    try {
+        yield firebase.auth().signInWithEmailAndPassword(
+            payload.email.trim(),
+            payload.password.trim())
+        yield put({ type: "TURN_USER", payload: true })
+        yield put({
+            type: "SUCCESSFUL_USER_YES",
+            payload: {
+                AuthSuccessfulTrue: true,
+                AuthSuccessfulFalse: false
+            }
+        })
+    } catch (error) {
+        console.log(error.code);
+        console.log(error.message);
+        yield put({ type: "TURN_USER", payload: false })
+        yield put({
+            type: "SUCCESSFUL_USER_NO",
+            payload: {
+                AuthSuccessfulTrue: false,
+                AuthSuccessfulFalse: true
+            }
+        })
+    }
 }
 
 export default function* rootSaga() {

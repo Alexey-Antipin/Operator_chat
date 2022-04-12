@@ -1,22 +1,21 @@
-// import { useSelector } from "react-redux";
-// import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-// import { Auth } from "../components/auth/Auth";
-// import { Login } from "../components/formik/Login";
+import { useSelector } from "react-redux";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Auth } from "../components/auth/Auth";
+import { Login } from "../components/formik/Login";
 import { Navbar } from "../components/navbar/Navbar";
 import { Page } from "../components/Page/Page";
-// import { NotFound } from "../components/pagenotFound/NotFound";
+import { NotFound } from "../components/pagenotFound/NotFound";
 import "./App.scss";
 
 function App() {
 
-  // const Account = useSelector((state) => state.reducer)
+  const Account = useSelector((state) => state.reducer)
 
   return (
     <div className="App">
-      {/* <BrowserRouter> */}
+      <BrowserRouter>
         <Navbar />
-        <Page />
-        {/* <Routes>
+        <Routes>
           <Route path="/Login" element={<Login />} />
           <Route path="/Auth" element={<Auth />} />
           {
@@ -27,7 +26,7 @@ function App() {
           }
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter> */}
+      </BrowserRouter>
     </div>
   );
 }
