@@ -20,9 +20,9 @@ function App() {
           <Route path="/Auth" element={<Auth />} />
           {
             Account.hasAccount ?
-              <Route path="/Page" element={<Page />} />
+              <Route path="/" element={<Page />} />
               :
-              <Route path="/Page" element={<Navigate to="/Auth" replace />} />
+              <Route path="/" element={<Navigate to="/Auth" replace />} />
           }
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -38,7 +38,7 @@ export const Auth = () => {
 
     const SignInput = () => {
         setTimeout(() => {
-            navigate("/Page")
+            navigate("/")
         }, 5000);
     }
 

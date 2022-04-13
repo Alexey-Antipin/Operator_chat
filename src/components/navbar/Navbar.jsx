@@ -10,13 +10,13 @@ export const Navbar = () => {
     const [ComeOut, SetComeOut] = useState({ boolean: true })
 
     const SignIn = () => {
-        SetComeOut(false)
+        SetComeOut(true)
         console.log("Come from system")
     }
 
     const SignOut = () => {
         firebase.auth().signOut()
-        SetComeOut(true)
+        SetComeOut(false)
         console.log("Exit from system")
     }
 
@@ -26,14 +26,14 @@ export const Navbar = () => {
                 ComeOut ?
                     <button
                         className="Navbar__button"
-                        onClick={() => SignIn()}>
-                        <Link to="/Auth">Войти</Link>
+                        onClick={() => SignOut()}>
+                        <Link to="/Login">Выйти</Link>
                     </button>
                     :
                     <button
                         className="Navbar__button"
-                        onClick={() => SignOut()}>
-                        <Link to="/Login">Выйти</Link>
+                        onClick={() => SignIn()}>
+                        <Link to="/Auth">Войти</Link>
                     </button>
             }
         </div>
