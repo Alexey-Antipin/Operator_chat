@@ -26,14 +26,14 @@ export const Navbar = () => {
                 ComeOut ?
                     <button
                         className="Navbar__button"
-                        onClick={() => SignIn()}>
-                        <Link to="/Auth">Войти</Link>
+                        onClick={() => SignOut()}>
+                        <Link to="/Login">Выйти</Link>
                     </button>
                     :
                     <button
                         className="Navbar__button"
-                        onClick={() => SignOut()}>
-                        <Link to="/Login">Выйти</Link>
+                        onClick={() => SignIn()}>
+                        <Link to="/Auth">Войти</Link>
                     </button>
             }
         </div>
