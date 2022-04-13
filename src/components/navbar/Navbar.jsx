@@ -10,13 +10,13 @@ export const Navbar = () => {
     const [ComeOut, SetComeOut] = useState({ boolean: true })
 
     const SignIn = () => {
-        SetComeOut(false)
+        SetComeOut(true)
         console.log("Come from system")
     }
 
     const SignOut = () => {
         firebase.auth().signOut()
-        SetComeOut(true)
+        SetComeOut(false)
         console.log("Exit from system")
     }
 
