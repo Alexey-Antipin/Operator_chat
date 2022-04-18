@@ -1,0 +1,57 @@
+.Page__Rightblock {
+    width: 25%;
+    background-color: rgb(255, 255, 255);
+    .Page__CloseRightblock {
+        height: 5%;
+        width: 100%;
+        .Page__CloseButton {
+            border: none;
+            background-color: rgb(255, 255, 255);
+            font-size: 25px;
+            padding: 15px;
+            float: right;
+        }
+    }
+    .Page__Avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 25px;
+        .Page__Image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgb(172, 229, 255);
+            border-radius: 50%;
+            height: 250px;
+            width: 250px;
+        }
+        .Page__Name__text {
+            margin-top: 10px;
+            font-size: 25px;
+            font-weight: bold;
+        }
+    }
+    .Page__Name__MainInfo {
+        margin-top: 15px;
+        margin-left: 25px;
+        .Page__Name__Info {
+            font-size: 20px;
+        }
+    }
+    .Page__Media {
+        .Page__Media__Word {
+            font-size: 20px;
+            margin: 25px;
+        }
+        .Page__Media__List {
+            display: flex;
+            justify-content: space-between;
+            font-size: 25px;
+            margin-left: 25px;
+            margin-right: 25px;
+            width: 250px;
+        }
+    }
+}
