@@ -3,7 +3,9 @@ import * as Yup from "yup";
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from "react-redux";
 import "./Auth.scss";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FaVk, FaGoogle } from "react-icons/fa";
+
 
 export const Auth = () => {
 
@@ -22,10 +24,10 @@ export const Auth = () => {
     }
 
     const validationSchema = Yup.object({
-        password: Yup.string().required('Required'),
+        password: Yup.string().required('Обязательно'),
         email: Yup.string()
-            .email('Invalid email format')
-            .required('Required')
+            .email('Неверный формат электронной почты')
+            .required('Обязательно')
     })
 
     const formik = useFormik({
@@ -47,6 +49,11 @@ export const Auth = () => {
     return (
         <div className="Auth">
             <form onSubmit={formik.handleSubmit}>
+                
+                {/* Авторизация */}
+                <div className="Auth__Text">
+                    Авторизация
+                </div>
 
                 {/* Почта */}
                 <div>
@@ -86,12 +93,47 @@ export const Auth = () => {
                     {formik.errors.password ? <>{formik.errors.password}</> : null}
                 </div>
 
-                <button
-                    className="Auth__button"
-                    onClick={() => SignInput()}
-                    type="submit">
-                    Авторизация
-                </button>
+                {/* Авторизация */}
+                <div className="Auth__Button__Flex">
+                    <button
+                        className="Auth__Button"
+                        onClick={() => SignInput()}
+                        type="submit">
+                        Авторизация
+                    </button>
+                </div>
+
+                {/*Войти через VK, GOOGLE */}
+                <div className="Auth__Container__Net">
+                    <div className="Auth__Center">
+                        <button
+                            className="Auth__Button__VK">
+                            <Link to="/Login"><FaVk /></Link>
+                        </button>
+                        <div>Войти через VK</div>
+                    </div>
+
+                    <div className="Auth__Center">
+                        <button
+                            className="Auth__Button__Google">
+                            <Link to="/Forgotpass"><FaGoogle /></Link>
+                        </button>
+                        <div>Войти через Google</div>
+                    </div>
+                </div>
+
+                {/*Войти , Регистрация */}
+                <div className="Auth__Container">
+                    <button
+                        className="Auth__Button__Registration">
+                        <Link to="/Login">Зарегистрироваться</Link>
+                    </button>
+
+                    <button
+                        className="Auth__Button__ForgotPass">
+                        <Link to="/Forgotpass">Забыли пароль?</Link>
+                    </button>
+                </div>
             </form>
         </div>
     )

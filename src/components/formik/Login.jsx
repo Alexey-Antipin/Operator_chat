@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from 'formik';
 import { useDispatch } from "react-redux";
@@ -21,10 +22,19 @@ export const Login = () => {
     }
 
     const validationSchema = Yup.object({
-        password: Yup.string().required('Required'),
+        password: Yup.string().required('Обязательно')
+            .min(8, 'Пароль слишком короткий — минимум 8 символов.')
+            .max(20, 'Пароль слишком длинный. Максимум 20 символов.')
+            .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
+                "Должен быть один верхний регистр, один нижний регистр, одна цифра и один символ особого регистра."
+            ),
+
+        confirmPassword: Yup.string().oneOf([Yup.ref("password")],
+            "Пароли не совпадают").required('Обязательно'),
+
         email: Yup.string()
-            .email('Invalid email format')
-            .required('Required')
+            .email('Неверный формат электронной почты')
+            .required('Обязательно')
     })
 
     const formik = useFormik({
@@ -36,6 +46,11 @@ export const Login = () => {
     return (
         <div className="Formik">
             <form onSubmit={formik.handleSubmit}>
+
+                {/* Регистрация */}
+                <div className="Formik__text">
+                    Регистрация
+                </div>
 
                 {/* Почта */}
                 <div>
@@ -59,7 +74,7 @@ export const Login = () => {
                 <div>
                     <label
                         className="Formik__label"
-                        htmlFor="firstName">
+                        htmlFor="password">
                         Пароль
                     </label>
                     <input
@@ -70,14 +85,51 @@ export const Login = () => {
                         onChange={formik.handleChange}
                         value={formik.values.password}
                     />
-                    {formik.errors.password ? <>{formik.errors.password}</> : null}
+                    {
+                        formik.errors.password ?
+                            <div className="Formik_Error">{formik.errors.password}</div> : null
+                    }
                 </div>
 
-                <button
-                    className="Formik__button"
-                    type="submit">
-                    Регистрация
-                </button>
+                {/* Подтверждение пароля */}
+                <div>
+                    <label
+                        className="Formik__label"
+                        htmlFor="confirmPassword">
+                        Подтверждение пароля
+                    </label>
+                    <input
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        type="confirmPassword"
+                        className="Formik__input"
+                        onChange={formik.handleChange}
+                        value={formik.values.confirmPassword}
+                    />
+                    {formik.errors.confirmPassword ? <>{formik.errors.confirmPassword}</> : null}
+                </div>
+
+                {/* Регистрация */}
+                <div className="Formik__button__flex">
+                    <button
+                        className="Formik__button"
+                        type="submit">
+                        Регистрация
+                    </button>
+                </div>
+
+                {/*Войти , забыли пароль ? */}
+                <div className="Formik__Container">
+                    <button
+                        className="Formik__button__sign">
+                        <Link to="/Auth">Войти</Link>
+                    </button>
+
+                    <button
+                        className="Formik__button__ForgotPass">
+                        <Link to="/ForgotPass">Забыли пароль?</Link>
+                    </button>
+                </div>
             </form>
         </div>
     )

@@ -1,52 +1,46 @@
-.Formik {
+.Form {
     display: flex;
     height: calc(90vh - 0px);
     align-items: center;
     justify-content: center;
-    .Formik__text {
+    .Form__label__Pass {
         font-size: 45px;
         font-weight: bold;
         margin-bottom: 25px;
     }
-    .Formik__input {
+    .Form__label {
+        font-size: 25px;
+    }
+    .Form__input {
         display: flex;
         margin-top: 5px;
         background-color: rgb(212, 255, 241);
-        border-radius: 15px;
+        border-radius: 5px;
+        width: 100%;
         font-size: 25px;
     }
-    .Formik_Error {
-        width: 40vh;
-        word-break: break-word;
-    }
-    .Formik__label {
-        font-size: 25px;
-    }
-    .Formik__button__flex {
+    .Form__buttonRecovery {
         display: flex;
         justify-content: flex-end;
-        margin-top: 15px;
-        margin-bottom: 15px;
-        .Formik__button {
-            background-color: aquamarine;
-            font-size: 25px;
-            margin-top: 5px;
-            border-radius: 15px;
-            padding: 15px;
-        }
+        padding: 5px;
+        font-size: 20px;
+        margin-top: 55%;
+        margin-bottom: 10%;
+        border-radius: 5px;
+        background-color: rgb(242, 255, 127);
     }
-    .Formik__Container {
+    .Form__Container {
         display: flex;
         justify-content: space-between;
-        .Formik__button__sign {
+        .Form__button__sign {
             background-color: rgb(127, 255, 138);
             font-size: 20px;
             margin-top: 15px;
             padding: 5px;
             border-radius: 5px;
         }
-        .Formik__button__ForgotPass {
-            background-color: rgb(242, 255, 127);
+        .Form__buttonRegistration {
+            background-color: rgb(127, 255, 138);
             font-size: 20px;
             margin-top: 15px;
             padding: 5px;
