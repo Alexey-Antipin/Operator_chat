@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Auth } from "../components/auth/Auth";
+import { ForgotPass } from "../components/ForgotPass/ForgotPass";
 import { Login } from "../components/formik/Login";
 import { Navbar } from "../components/navbar/Navbar";
 import { Page } from "../components/Page/Page";
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/Login" element={<Login />} />
           <Route path="/Auth" element={<Auth />} />
+          <Route path="/ForgotPass" element={<ForgotPass />} />
           {
             Account.hasAccount ?
               <Route path="/" element={<Page />} />

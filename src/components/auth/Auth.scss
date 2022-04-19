@@ -1,10 +1,11 @@
 .Auth {
     display: flex;
-    height: calc(100vh - 0px);
+    height: calc(90vh - 0px);
     align-items: center;
     justify-content: center;
     .Auth__input {
         display: flex;
+        width: 100%;
         margin-top: 5px;
         background-color: rgb(212, 255, 241);
         border-radius: 15px;
@@ -13,12 +14,54 @@
     .Auth__label {
         font-size: 25px;
     }
-    .Auth__button {
-        background-color: aquamarine;
-        float: right;
-        font-size: 25px;
-        margin-top: 5px;
-        border-radius: 15px;
-        padding: 15px;
+    .Auth__Button__Flex {
+        display: flex;
+        justify-content: center;
+        .Auth__Button {
+            width: 100%;
+            background-color: aquamarine;
+            font-size: 25px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            padding: 10px;
+        }
+    }
+    .Auth__Container__Net {
+        display: flex;
+        justify-content: space-between;
+        .Auth__Button__VK {
+            background-color: rgb(36, 240, 255);
+            font-size: 20px;
+            margin-top: 15px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .Auth__Button__Google {
+            background-color: rgb(255, 202, 152);
+            font-size: 20px;
+            margin-top: 15px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    }
+    .Auth__Container {
+        display: flex;
+        justify-content: space-between;
+        .Auth__Button__Registration {
+            background-color: rgb(127, 255, 138);
+            font-size: 20px;
+            margin-top: 15px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .Auth__Button__ForgotPass {
+            background-color: rgb(253, 255, 135);
+            font-size: 20px;
+            margin-top: 15px;
+            margin-left: 5px;
+            padding: 5px;
+            border-radius: 5px;
+        }
     }
 }
