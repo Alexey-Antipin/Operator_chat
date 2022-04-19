@@ -6,6 +6,7 @@ import { Login } from "../components/formik/Login";
 import { Navbar } from "../components/navbar/Navbar";
 import { Page } from "../components/Page/Page";
 import { NotFound } from "../components/pagenotFound/NotFound";
+import { UpdatePass } from "../components/UpdatePass/UpdatePass";
 import "./App.scss";
 
 function App() {
@@ -15,11 +16,11 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar />
         <Routes>
           <Route path="/Login" element={<Login />} />
           <Route path="/Auth" element={<Auth />} />
           <Route path="/ForgotPass" element={<ForgotPass />} />
+          <Route path="/UpdatePass" element={<UpdatePass />} />
           {
             Account.hasAccount ?
               <Route path="/" element={<Page />} />
