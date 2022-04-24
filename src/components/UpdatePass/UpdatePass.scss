@@ -21,31 +21,18 @@
         font-size: 25px;
     }
     .Update__buttonRecovery {
-        display: flex;
-        justify-content: flex-end;
-        padding: 5px;
-        font-size: 20px;
+        width: 100%;
         margin-top: 55%;
         margin-bottom: 10%;
-        border-radius: 5px;
-        background-color: rgb(242, 255, 127);
     }
     .Update__Container {
         display: flex;
         justify-content: space-between;
         .Update__button__sign {
-            background-color: rgb(127, 255, 138);
-            font-size: 20px;
             margin-top: 15px;
-            padding: 5px;
-            border-radius: 5px;
         }
         .Update__buttonRegistration {
-            background-color: rgb(127, 255, 138);
-            font-size: 20px;
             margin-top: 15px;
-            padding: 5px;
-            border-radius: 5px;
         }
     }
 }
