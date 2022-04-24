@@ -2,6 +2,8 @@ import { fork, takeLatest, all, put } from "redux-saga/effects";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 import 'firebase/compat/auth';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function* Connect() {
     setTimeout(ConnectedFirebase, 1000)
@@ -62,10 +64,32 @@ export function* AuthUser({ payload }) {
     }
 }
 
+export function* ForgotPasswordUser({ payload }) {
+
+    const email = payload
+
+    try {
+        yield firebase.auth().sendPasswordResetEmail(email)
+        yield toast.success(`🦄 It's work!`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
+    } catch (error) {
+        console.log(error.code);
+        console.log(error.message);
+    }
+}
+
 export default function* rootSaga() {
     yield all([
         yield fork(Connect),
         yield takeLatest("CREATE_USER", CreateUser),
         yield takeLatest("AUTH_USER", AuthUser),
+        yield takeLatest("FORGOT_PASS_USER", ForgotPasswordUser),
     ])
 }

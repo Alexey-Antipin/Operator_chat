@@ -1,8 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./ForgotPass.scss";
 
 export const ForgotPass = () => {
+
+    const [NewPass, setNewPass] = useState("")
+    const dispatch = useDispatch()
+
+    const ForgotPassword = () => {
+        try {
+            if (NewPass !== "") {
+                dispatch({
+                    type: "FORGOT_PASS_USER",
+                    payload: NewPass
+                })              
+            }
+        } catch (error) {
+            toast.error(`🦄 It's don't work!`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        }
+    }
 
     return (
         <div className="Form">
@@ -25,16 +52,19 @@ export const ForgotPass = () => {
                         name="email"
                         type="email"
                         className="Form__input"
-                    // onChange={formik.handleChange}
-                    // value={formik.values.email}
+                        onChange={(e) => setNewPass(e.target.value)}
+                        value={NewPass}
                     />
                 </div>
 
                 {/* Отправить ссылку для восстановления */}
                 <button
+                    onClick={ForgotPassword}
                     className="Form__buttonRecovery">
                     Отправить ссылку для восстановления
                 </button>
+
+                <ToastContainer />
 
                 {/*Войти , Регистрация */}
                 <div className="Form__Container">
