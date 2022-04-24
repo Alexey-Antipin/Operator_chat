@@ -2,9 +2,9 @@ import React from "react";
 import * as Yup from "yup";
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from "react-redux";
-import "./Auth.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { FaVk, FaGoogle } from "react-icons/fa";
+import "./Auth.scss";
 
 
 export const Auth = () => {
