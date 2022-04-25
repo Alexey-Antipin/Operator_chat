@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from 'formik';
 import { useDispatch } from "react-redux";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'reactstrap';
 import "./Login.scss";
 
 export const Login = () => {
@@ -111,24 +113,33 @@ export const Login = () => {
 
                 {/* Регистрация */}
                 <div className="Formik__button__flex">
-                    <button
+                    <Button
+                        color="primary"
+                        outline
+                        size="lg"
                         className="Formik__button"
                         type="submit">
                         Регистрация
-                    </button>
+                    </Button>
                 </div>
 
                 {/*Войти , забыли пароль ? */}
                 <div className="Formik__Container">
-                    <button
+                    <Button
+                        color="success"
+                        outline
+                        size="lg"
                         className="Formik__button__sign">
                         <Link to="/Auth">Войти</Link>
-                    </button>
+                    </Button>
 
-                    <button
+                    <Button
+                        color="danger"
+                        outline
+                        size="lg"
                         className="Formik__button__ForgotPass">
                         <Link to="/ForgotPass">Забыли пароль?</Link>
-                    </button>
+                    </Button>
                 </div>
             </form>
         </div>

@@ -28,29 +28,17 @@
         margin-top: 15px;
         margin-bottom: 15px;
         .Formik__button {
-            background-color: aquamarine;
-            font-size: 25px;
             margin-top: 5px;
-            border-radius: 15px;
-            padding: 15px;
         }
     }
     .Formik__Container {
         display: flex;
         justify-content: space-between;
         .Formik__button__sign {
-            background-color: rgb(127, 255, 138);
-            font-size: 20px;
             margin-top: 15px;
-            padding: 5px;
-            border-radius: 5px;
         }
         .Formik__button__ForgotPass {
-            background-color: rgb(242, 255, 127);
-            font-size: 20px;
             margin-top: 15px;
-            padding: 5px;
-            border-radius: 5px;
         }
     }
 }
