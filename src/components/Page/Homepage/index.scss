@@ -1,0 +1,20 @@
+.Page {
+	display: flex;
+	flex-direction: row;
+	min-height: 100vh;
+
+	.Left__Block {
+		display: flex;
+		flex-direction: row;
+		border-right: solid rgb(226, 223, 223) 2px;
+		background-color: rgb(127, 197, 255);
+		width: 30%;
+	}
+
+	.Right__Block {
+		display: flex;
+		flex-direction: column;
+		width: 70%;
+		background-color: rgb(234, 241, 247);
+	}
+}

@@ -1,0 +1,17 @@
+.Block__Buttons {
+    display: flex;
+    flex-direction: column;
+    margin: 25px;
+
+    .ClassButton {
+        height: 20vh;
+        width: 20vh;
+    }
+
+    .ClassName {
+        display: flex;
+        justify-content: center;
+        font-size: 25px;
+        margin-bottom: 15px;
+    }
+}
