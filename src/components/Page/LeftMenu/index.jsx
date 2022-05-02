@@ -1,5 +1,5 @@
 import "./index.scss";
-import {ButtonTurn} from "../../Repeat_components";
+import {ButtonTurn} from "../../Repeat_components/ButtonTurn";
 
 export const LeftPage = () => {
 	return (
@@ -10,7 +10,7 @@ export const LeftPage = () => {
 				ClassChildren={"ClassChildren"}
 				Word={"Активные"}
 				Children={"Фотка"}
-				URL_LINK={"/Active"}
+				URL_LINK={"Active"}
 			/>
 			<ButtonTurn
 				ClassButton={"ClassButton"}
@@ -18,7 +18,7 @@ export const LeftPage = () => {
 				ClassChildren={"ClassChildren"}
 				Word={"Завершенные"}
 				Children={"Фотка"}
-				URL_LINK={"/Ending"}
+				URL_LINK={"Ending"}
 			/>
 			<ButtonTurn
 				ClassButton={"ClassButton"}
@@ -26,7 +26,7 @@ export const LeftPage = () => {
 				ClassChildren={"ClassChildren"}
 				Word={"Сохраненные"}
 				Children={"Фотка"}
-				URL_LINK={"/Saving"}
+				URL_LINK={"Saving"}
 			/>
 		</div>
 	);

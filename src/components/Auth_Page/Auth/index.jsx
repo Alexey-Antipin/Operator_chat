@@ -38,8 +38,8 @@ export const Auth = () => {
 
 	const SignInput = () => {
 		setTimeout(() => {
-			navigate("/");
-		}, 5000);
+			navigate("/HomePage");
+		}, 2000);
 	};
 
 	const AuthTrue = useSelector((state) => state.reducer);

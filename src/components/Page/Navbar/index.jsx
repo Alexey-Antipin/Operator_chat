@@ -1,5 +1,5 @@
 import "./index.scss";
-import {ButtonTurn} from "../../Repeat_components";
+import {ButtonTurn} from "../../Repeat_components/ButtonTurn";
 
 export const RightPage = () => {
 	return (

@@ -16,16 +16,20 @@ function App() {
 			<BrowserRouter>
 				<Routes>
 					<Route path="/Login" element={<Login />} />
-					<Route path="/Auth" element={<Auth />} />
+					<Route exact path="/Auth/*" element={<Auth />} />
 					<Route path="/ForgotPass" element={<ForgotPass />} />
 					<Route path="/UpdatePass" element={<UpdatePass />} />
-					<Route path="/*" element={<Page />} />
-					{/* {
-            Account.hasAccount ?
-              <Route path="/" element={<Page />} />
-              :
-              <Route path="/" element={<Navigate to="/Auth" replace />} />
-          } */}
+					<Route path="/HomePage/*" element={<Page />} />
+
+					{/* {Account.hasAccount ? (
+						<Route path="/HomePage/*" element={<Page />} />
+					) : (
+						<Route
+							path="/*"
+							element={<Navigate to="/Auth" replace />}
+						/>
+					)} */}
+
 					<Route path="*" element={<NotFound />} />
 				</Routes>
 			</BrowserRouter>
