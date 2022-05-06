@@ -1,17 +1,25 @@
 .Block__Buttons {
-    display: flex;
-    flex-direction: column;
-    margin: 25px;
+	display: flex;
+	flex-direction: column;
+	margin: 25px;
 
-    .ClassButton {
-        height: 20vh;
-        width: 20vh;
-    }
+	.ClassButton {
+		background-color: white;
+		border-radius: 15px;
+		height: 20vh;
+		width: 20vh;
+	}
 
-    .ClassName {
-        display: flex;
-        justify-content: center;
-        font-size: 25px;
-        margin-bottom: 15px;
-    }
+	.ClassName {
+		display: flex;
+		justify-content: center;
+		font-size: 25px;
+		margin-bottom: 15px;
+	}
+
+	.Icons {
+		color: rgb(125, 160, 224);
+		height: 100%;
+		width: 100%;
+	}
 }

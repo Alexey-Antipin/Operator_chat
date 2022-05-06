@@ -1,5 +1,8 @@
 import "./index.scss";
 import {ButtonTurn} from "../../Repeat_components/ButtonTurn";
+import {FiSave} from "react-icons/fi";
+import {VscVmActive} from "react-icons/vsc";
+import {IoIosCheckmarkCircleOutline} from "react-icons/io";
 
 export const LeftPage = () => {
 	return (
@@ -7,25 +10,22 @@ export const LeftPage = () => {
 			<ButtonTurn
 				ClassButton={"ClassButton"}
 				ClassName={"ClassName"}
-				ClassChildren={"ClassChildren"}
 				Word={"Активные"}
-				Children={"Фотка"}
+				Children={<VscVmActive className="Icons" />}
 				URL_LINK={"Active"}
 			/>
 			<ButtonTurn
 				ClassButton={"ClassButton"}
 				ClassName={"ClassName"}
-				ClassChildren={"ClassChildren"}
 				Word={"Завершенные"}
-				Children={"Фотка"}
+				Children={<IoIosCheckmarkCircleOutline className="Icons" />}
 				URL_LINK={"Ending"}
 			/>
 			<ButtonTurn
 				ClassButton={"ClassButton"}
 				ClassName={"ClassName"}
-				ClassChildren={"ClassChildren"}
 				Word={"Сохраненные"}
-				Children={"Фотка"}
+				Children={<FiSave className="Icons" />}
 				URL_LINK={"Saving"}
 			/>
 		</div>

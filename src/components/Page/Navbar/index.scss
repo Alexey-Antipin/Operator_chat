@@ -3,9 +3,24 @@
 	justify-content: flex-start;
 	flex-direction: row-reverse;
 	align-items: center;
-	height: 100px;
+	flex-wrap: wrap;
 	background-color: rgb(219, 219, 219);
 	box-shadow: 4px 2px 8px 0px rgb(206, 255, 251);
+	margin-bottom: 15px;
+	height: 100px;
+
+	.Block {
+		display: flex;
+		justify-content: flex-end;
+		margin-right: 70px;
+		width: 100%;
+		.Word {
+			font-size: 25px;
+		}
+		.Input {
+			margin-left: 15px;
+		}
+	}
 
 	.OperatorButton {
 		margin-left: 15px;
