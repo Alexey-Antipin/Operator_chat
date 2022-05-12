@@ -2,12 +2,16 @@ export const initialState = {
 	TokenUser: null,
 	AuthSuccessfulTrue: false,
 	AuthSuccessfulFalse: false,
-	surname: "2000",
 };
 
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case "TOKEN_USER":
+			return {
+				...state,
+				TokenUser: action.payload,
+			};
+		case "NEW_TOKEN_USER":
 			return {
 				...state,
 				TokenUser: action.payload,

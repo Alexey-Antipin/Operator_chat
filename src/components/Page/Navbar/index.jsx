@@ -1,11 +1,14 @@
 import "./index.scss";
 import {ButtonTurn} from "../../Repeat_components/ButtonTurn";
-import {Route, Routes} from "react-router-dom";
-import {SearchInput} from "../../Repeat_components/SearchInput";
 import {useDispatch} from "react-redux";
+import {SearchUser} from "../../Repeat_components/SearchUser";
+import {Route, Routes} from "react-router-dom";
+import {useContext} from "react";
+import {ThemeContext} from "../../../context/index.js";
 
 export const Navbar = () => {
 	const dispatch = useDispatch();
+	const {setValue, value} = useContext(ThemeContext);
 
 	const TokenOutUser = () => {
 		dispatch({type: "TOKEN_OUT_USER", payload: false});
@@ -22,38 +25,40 @@ export const Navbar = () => {
 				Children={"Выход"}
 				URL_LINK={"/Auth"}
 			/>
-
 			<Routes>
 				<Route
 					path="Active"
 					element={
-						<SearchInput
-							Block={"Block"}
-							Word={"Word"}
-							Input={"Input"}
+						<SearchUser
+							classBlock={"Block"}
+							classWord={"Word"}
+							setValue={setValue}
+							value={value}
 						/>
 					}
 				/>
-				<Route
+				{/* <Route
 					path="Ending"
 					element={
-						<SearchInput
-							Block={"Block"}
-							Word={"Word"}
-							Input={"Input"}
+						<SearchUser
+							classBlock={"Block"}
+							classWord={"Word"}
+							setValue={setValue}
+							value={value}
 						/>
 					}
 				/>
 				<Route
 					path="Saving"
 					element={
-						<SearchInput
-							Block={"Block"}
-							Word={"Word"}
-							Input={"Input"}
+						<SearchUser
+							classBlock={"Block"}
+							classWord={"Word"}
+							setValue={setValue}
+							value={value}
 						/>
 					}
-				/>
+				/> */}
 			</Routes>
 		</div>
 	);

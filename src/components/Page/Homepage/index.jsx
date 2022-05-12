@@ -8,16 +8,23 @@ import {Saving} from "./Saving";
 import {Ending} from "./Ending";
 import {connect} from "react-redux";
 import {Navigate} from "react-router-dom";
+import {FirebaseTokenUser} from "../../../sagas/action/index";
+import firebase from "firebase/compat/app";
+import "firebase/compat/database";
+import "firebase/compat/auth";
 
 class Page extends Component {
 	componentDidMount() {
-		const {TokenUser} = this.props.state;
-
-		if (TokenUser) {
-			console.log("Auth__User");
-		} else {
-			<Navigate replace to="/Login" />;
-		}
+		const {FirebaseTokenUser} = this.props;
+		firebase.auth().onIdTokenChanged(function (User) {
+			if (User) {
+				User.getIdToken(true).then((Token) => {
+					FirebaseTokenUser(Token);
+				});
+			} else {
+				<Navigate replace to="/Login" />;
+			}
+		});
 	}
 
 	render() {
@@ -45,5 +52,10 @@ function mapStateToProps(state) {
 		state: state.reducer,
 	};
 }
+const mapDispatchToProps = (dispatch) => {
+	return {
+		FirebaseTokenUser: (event) => dispatch(FirebaseTokenUser(event)),
+	};
+};
 
-export default connect(mapStateToProps)(Page);
+export default connect(mapStateToProps, mapDispatchToProps)(Page);
