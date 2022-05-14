@@ -2,6 +2,7 @@ export const initialState = {
 	TokenUser: null,
 	AuthSuccessfulTrue: false,
 	AuthSuccessfulFalse: false,
+	UserEmail: "",
 };
 
 export default function reducer(state = initialState, action) {
@@ -15,6 +16,11 @@ export default function reducer(state = initialState, action) {
 			return {
 				...state,
 				TokenUser: action.payload,
+			};
+		case "USER_UID":
+			return {
+				...state,
+				UserEmail: action.payload,
 			};
 		case "SUCCESSFUL_USER_YES":
 			return {

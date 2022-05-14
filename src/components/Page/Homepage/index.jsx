@@ -22,7 +22,7 @@ class Page extends Component {
 					FirebaseTokenUser(Token);
 				});
 			} else {
-				<Navigate replace to="/Login" />;
+				<Navigate replace to="/Auth" />;
 			}
 		});
 	}
@@ -37,9 +37,9 @@ class Page extends Component {
 				<div className="Right__Block">
 					<Navbar />
 					<Routes>
-						<Route path="Active" element={<Active />} />
-						<Route path="Ending" element={<Ending />} />
-						<Route path="Saving" element={<Saving />} />
+						<Route path="Active/*" element={<Active />} />
+						<Route path="Ending/*" element={<Ending />} />
+						<Route path="Saving/*" element={<Saving />} />
 					</Routes>
 				</div>
 			</div>

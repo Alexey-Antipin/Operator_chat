@@ -55,5 +55,19 @@
 				}
 			}
 		}
+		.BlockMapUser {
+			display: flex;
+			flex-direction: column;
+			border: rgb(202, 202, 255) 2px solid;
+			height: 150px;
+			background-color: rgb(186, 223, 255);
+			margin-bottom: 15px;
+			.CwrittenBy {
+			}
+			.Ccontent {
+			}
+			.Ctimestamp {
+			}
+		}
 	}
 }

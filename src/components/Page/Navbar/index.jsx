@@ -27,7 +27,7 @@ export const Navbar = () => {
 			/>
 			<Routes>
 				<Route
-					path="Active"
+					path="Active/*"
 					element={
 						<SearchUser
 							classBlock={"Block"}
@@ -37,8 +37,9 @@ export const Navbar = () => {
 						/>
 					}
 				/>
+
 				{/* <Route
-					path="Ending"
+					path="Ending/*"
 					element={
 						<SearchUser
 							classBlock={"Block"}
@@ -49,7 +50,7 @@ export const Navbar = () => {
 					}
 				/>
 				<Route
-					path="Saving"
+					path="Saving/*"
 					element={
 						<SearchUser
 							classBlock={"Block"}

@@ -12,11 +12,13 @@ import "./App.scss";
 
 function App() {
 	const [value, setValue] = useState("");
+	const [MessUser, setMessUser] = useState(false);
 	const Account = useSelector((state) => state.reducer);
 
 	return (
 		<div className="App">
-			<ThemeContext.Provider value={{setValue, value}}>
+			<ThemeContext.Provider
+				value={{setMessUser, MessUser, setValue, value}}>
 				<BrowserRouter>
 					<Routes>
 						<Route path="/Login" element={<Login />} />

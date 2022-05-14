@@ -49,12 +49,17 @@ export function* AuthUser({payload}) {
 			);
 
 		const Token = yield firebase.auth().currentUser.getIdToken(true);
+		const user = firebase.auth().currentUser;
+		const UserEmail = user.email;
 
 		yield put({
 			type: "TOKEN_USER",
 			payload: Token,
 		});
-
+		yield put({
+			type: "USER_UID",
+			payload: UserEmail,
+		});
 		yield put({
 			type: "SUCCESSFUL_USER_YES",
 			payload: {
