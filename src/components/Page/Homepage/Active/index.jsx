@@ -2,17 +2,16 @@ import "./index.scss";
 import {useContext, useEffect, useState} from "react";
 import {debounce} from "lodash";
 import firebase from "firebase/compat/app";
-import {Field} from "../../../Repeat_components/Field";
 import {MapUsers} from "../../../Repeat_components/MapUsers";
-import {MapUser} from "../../../Repeat_components/MapUser";
+import {MapUserDialog} from "../Dialog";
 import {ThemeContext} from "../../../../context";
 import {useNavigate} from "react-router-dom";
 import {FaUserAlt} from "react-icons/fa";
+import {Panel} from "../Panel";
 
 export const Active = () => {
 	const [Messages, setMessages] = useState();
 	const [OperatorMess, setOperatorMess] = useState();
-
 	const {MessUser, setMessUser, value} = useContext(ThemeContext);
 	const navigate = useNavigate();
 
@@ -56,7 +55,7 @@ export const Active = () => {
 		Message.once("value", (snapshot) => {
 			const data = snapshot.val();
 			setOperatorMess(data);
-			navigate(`dialog/0`);
+			navigate(`dialog/${index}`);
 		}).then(() => {
 			setMessUser(true);
 		});
@@ -85,17 +84,11 @@ export const Active = () => {
 			/>
 		</>
 	) : (
-		<>
-			<MapUser
-				ScrollBar={"ScrollBar"}
-				BlockMap={"BlockMapUser"}
-				CwrittenBy={"CwrittenBy"}
-				Ccontent={"Ccontent"}
-				Ctimestamp={"Ctimestamp"}
-				Massive={OperatorMess}
-			/>
-		</>
+		<div className="Panel__Footer">
+			<MapUserDialog Massive={OperatorMess} />
+			<Panel />
+		</div>
 	);
 
-	return <Field ClassField={"FieldActive"} Children={<>{MessageUsers}</>} />;
+	return <>{MessageUsers}</>;
 };

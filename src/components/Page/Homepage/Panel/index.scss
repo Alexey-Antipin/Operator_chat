@@ -1,0 +1,41 @@
+.Form {
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	position: fixed;
+	background-color: rgba(170, 217, 255, 0.61);
+	height: 30%;
+	width: 100%;
+	.Form__Block {
+		display: flex;
+		width: 40%;
+		.Block__TextArea {
+			.Block__Text {
+				font-size: 25px;
+			}
+			.Block__Area {
+				font-size: 25px;
+				width: 350px;
+			}
+		}
+	}
+
+	.Block {
+		display: flex;
+		width: 50%;
+		.Block__Text {
+			font-size: 25px;
+		}
+		.Select {
+			height: 45px;
+			width: 300px;
+			font-size: 25px;
+		}
+		.Block__Button {
+			padding: 20px;
+			margin-left: 15px;
+			border-radius: 15px;
+			font-size: 25px;
+		}
+	}
+}

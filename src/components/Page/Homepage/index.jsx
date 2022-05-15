@@ -9,6 +9,7 @@ import {Ending} from "./Ending";
 import {connect} from "react-redux";
 import {Navigate} from "react-router-dom";
 import {FirebaseTokenUser} from "../../../sagas/action/index";
+import {ChatSet} from "../Settings_text/ChatSet";
 import firebase from "firebase/compat/app";
 import "firebase/compat/database";
 import "firebase/compat/auth";
@@ -40,6 +41,7 @@ class Page extends Component {
 						<Route path="Active/*" element={<Active />} />
 						<Route path="Ending/*" element={<Ending />} />
 						<Route path="Saving/*" element={<Saving />} />
+						<Route path="ChatSet" element={<ChatSet />} />
 					</Routes>
 				</div>
 			</div>
