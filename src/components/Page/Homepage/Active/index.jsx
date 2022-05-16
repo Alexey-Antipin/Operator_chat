@@ -10,8 +10,9 @@ import {FaUserAlt} from "react-icons/fa";
 import {Panel} from "../Panel";
 
 export const Active = () => {
-	const [Messages, setMessages] = useState();
+	const [Messages, setMessages] = useState([]);
 	const [OperatorMess, setOperatorMess] = useState();
+	const [Key, setKey] = useState("0");
 	const {MessUser, setMessUser, value} = useContext(ThemeContext);
 	const navigate = useNavigate();
 
@@ -27,15 +28,17 @@ export const Active = () => {
 					setMessages([data]);
 				});
 		} else {
-			const Message = firebase
+			firebase
 				.database()
-				.ref(`/TechSupport`)
-				.limitToFirst(5);
-			Message.orderByChild("task").on("value", (snapshot) => {
-				const data = snapshot.val();
-				setMessages(data);
-				console.log([data]);
-			});
+				.ref(`/TechSupport/${Key}`)
+				.orderByChild("ReqText")
+				.once("value", (snapshot) => {
+					const data = snapshot.val();
+					const newKey = snapshot.key;
+					setKey(Number(newKey) + 1);
+					setMessages([...Messages, data]);
+					console.log("data", data);
+				});
 		}
 	}, 300);
 
@@ -48,7 +51,6 @@ export const Active = () => {
 	// });
 
 	const Btn1Click = (index) => {
-		console.log("data", index);
 		const Message = firebase
 			.database()
 			.ref(`/TechSupport/${index}/task/mess/`);
@@ -65,7 +67,8 @@ export const Active = () => {
 	const MessageUsers = !MessUser ? (
 		<>
 			<MapUsers
-				ScrollBar={"ScrollBar"}
+				ScrollBar={"ScrollBar__Messages"}
+				FirebaseMessage={FirebaseMessage}
 				BlockMap={"BlockMap"}
 				BlockPhoto={"BlockPhoto"}
 				CPhoto={"CPhoto"}
@@ -85,7 +88,10 @@ export const Active = () => {
 		</>
 	) : (
 		<div className="Panel__Footer">
-			<MapUserDialog Massive={OperatorMess} />
+			<MapUserDialog
+				FirebaseMessage={FirebaseMessage}
+				Massive={OperatorMess}
+			/>
 			<Panel />
 		</div>
 	);

@@ -5,7 +5,7 @@ import {MapUsers} from "../../../Repeat_components/MapUsers";
 export const Ending = () => {
 	return (
 		<MapUsers
-			ScrollBar={"ScrollBar"}
+			ScrollBar={"ScrollBar__Messages"}
 			BlockMap={"BlockMap"}
 			BlockPhoto={"BlockPhoto"}
 			CPhoto={"CPhoto"}
