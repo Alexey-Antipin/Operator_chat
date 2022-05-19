@@ -5,6 +5,7 @@ import {SearchUser} from "../../Repeat_components/SearchUser";
 import {Route, Routes} from "react-router-dom";
 import {useContext} from "react";
 import {ThemeContext} from "../../../context/index.js";
+import {Queue} from "../Queue";
 
 export const Navbar = () => {
 	const dispatch = useDispatch();
@@ -29,12 +30,17 @@ export const Navbar = () => {
 				<Route
 					path="Active/*"
 					element={
-						<SearchUser
-							classBlock={"Block"}
-							classWord={"Word"}
-							setValue={setValue}
-							value={value}
-						/>
+						<>
+							<SearchUser
+								element={<Queue />}
+								cl__element={"cl__element"}
+								cl__input={"cl__input"}
+								classBlock={"Block"}
+								classWord={"Word"}
+								setValue={setValue}
+								value={value}
+							/>
+						</>
 					}
 				/>
 
