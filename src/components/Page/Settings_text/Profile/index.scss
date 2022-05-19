@@ -1,0 +1,33 @@
+.Profile {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	font-size: 25px;
+	margin-left: 25%;
+	margin-right: 25%;
+	.Profile__UpdatePass {
+		margin-top: 15px;
+		font-size: 45px;
+		font-weight: bold;
+	}
+	.Profile__Avatar {
+		display: flex;
+		margin-top: 15px;
+		margin-bottom: 15px;
+		.Avatar_m {
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+	}
+	.Profile__Pass {
+		width: 100%;
+		margin-bottom: 15px;
+	}
+	.Profile__ConfirmPass {
+		width: 100%;
+		margin-bottom: 15px;
+	}
+	.Profile__Update {
+		margin-top: 15px;
+	}
+}

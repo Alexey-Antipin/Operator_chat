@@ -1,36 +1,48 @@
-
 export const initialState = {
-    hasAccount: false,
-    AuthSuccessfulTrue: false,
-    AuthSuccessfulFalse: false,
-    FormPassNew: false,
+	TokenUser: null,
+	AuthSuccessfulTrue: false,
+	AuthSuccessfulFalse: false,
+	UserEmail: "",
 };
 
 export default function reducer(state = initialState, action) {
-    switch (action.type) {
+	switch (action.type) {
+		case "TOKEN_USER":
+			return {
+				...state,
+				TokenUser: action.payload,
+			};
+		case "NEW_TOKEN_USER":
+			return {
+				...state,
+				TokenUser: action.payload,
+			};
+		case "USER_UID":
+			return {
+				...state,
+				UserEmail: action.payload,
+			};
+		case "SUCCESSFUL_USER_YES":
+			return {
+				...state,
+				AuthSuccessfulTrue: action.payload.AuthSuccessfulTrue,
+				AuthSuccessfulFalse: action.payload.AuthSuccessfulFalse,
+			};
+		case "SUCCESSFUL_USER_NO":
+			return {
+				...state,
+				AuthSuccessfulTrue: action.payload.AuthSuccessfulTrue,
+				AuthSuccessfulFalse: action.payload.AuthSuccessfulFalse,
+			};
+		case "TOKEN_OUT_USER":
+			return {
+				...state,
+				TokenUser: action.payload,
+				AuthSuccessfulTrue: action.payload,
+				AuthSuccessfulFalse: action.payload,
+			};
 
-        case 'TURN_USER':
-            return {
-                ...state,
-                hasAccount: action.payload
-            };
-        case 'SUCCESSFUL_USER_YES':
-            return {
-                ...state,
-                AuthSuccessfulTrue: action.payload.AuthSuccessfulTrue,
-                AuthSuccessfulFalse: action.payload.AuthSuccessfulFalse
-            };
-        case 'SUCCESSFUL_USER_NO':
-            return {
-                ...state,
-                AuthSuccessfulTrue: action.payload.AuthSuccessfulTrue,
-                AuthSuccessfulFalse: action.payload.AuthSuccessfulFalse
-            };
-        case 'FORM_PASS':
-            return {
-                ...state,
-                FormPassNew: action.payload,
-            }
-        default: return state
-    }
-};
+		default:
+			return state;
+	}
+}

@@ -14,11 +14,15 @@ export const Auth = () => {
 
 	const dispatch = useDispatch();
 
-	const onSubmit = (values) => {
-		dispatch({
-			type: "AUTH_USER",
-			payload: values,
-		});
+	const onSubmit = async (values) => {
+		try {
+			dispatch({
+				type: "AUTH_USER",
+				payload: values,
+			});
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	const validationSchema = Yup.object({
@@ -38,8 +42,8 @@ export const Auth = () => {
 
 	const SignInput = () => {
 		setTimeout(() => {
-			navigate("/");
-		}, 5000);
+			navigate("/HomePage");
+		}, 2000);
 	};
 
 	const AuthTrue = useSelector((state) => state.reducer);
@@ -89,9 +93,6 @@ export const Auth = () => {
 						onChange={formik.handleChange}
 						value={formik.values.password}
 					/>
-					{formik.errors.password ? (
-						<>{formik.errors.password}</>
-					) : null}
 				</div>
 
 				{/* Авторизация */}

@@ -13,17 +13,12 @@ export const UpdatePass = () => {
 	const navigate = useNavigate();
 
 	const [searchParams, setSearchParams] = useSearchParams();
-	setSearchParams("oobCode");
 	const oobCode = searchParams.get("oobCode");
 
-	const FormPassNew = useSelector((state) => state.reducer.FormPassNew);
-
 	const TransitionOnAuth = () => {
-		if (FormPassNew === true) {
-			setTimeout(() => {
-				navigate("/Auth");
-			}, 3000);
-		}
+		setTimeout(() => {
+			navigate("/Auth");
+		}, 3000);
 	};
 
 	const initialValues = {
@@ -36,7 +31,7 @@ export const UpdatePass = () => {
 	const onSubmit = (values) => {
 		dispatch({
 			type: "UPDATE_PASSWORD",
-			payload: {values, oobCode},
+			payload: {New_password: values.New_password, oobCode},
 		});
 	};
 

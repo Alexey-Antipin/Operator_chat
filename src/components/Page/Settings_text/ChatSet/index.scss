@@ -1,0 +1,64 @@
+.Header__Text {
+	display: flex;
+	justify-content: center;
+	font-size: 35px;
+}
+.Array__Settings {
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	border-radius: 15px;
+	margin-left: 20%;
+	margin-right: 20%;
+	background-color: rgb(80, 80, 79);
+
+	.cl {
+		display: flex;
+		flex-direction: column;
+		width: 25%;
+		.cl_name {
+			color: rgb(129, 255, 255);
+			font-size: 25px;
+		}
+
+		.cl_map {
+			.cl_block {
+				display: flex;
+				font-size: 25px;
+				color: rgb(216, 255, 255);
+
+				.cl_D_btn {
+					font-weight: bold;
+					width: 50px;
+					border-radius: 15px;
+					background-color: rgba(215, 241, 255, 0.904);
+				}
+			}
+		}
+		.cl_btn {
+			font-size: 20px;
+			padding: 5px;
+			font-weight: bold;
+			border-radius: 15px;
+			background-color: rgb(155, 231, 245);
+		}
+	}
+}
+
+.Footer__Text {
+	display: flex;
+	justify-content: center;
+	padding: 15px;
+	color: rgb(216, 255, 255);
+	border-radius: 15px;
+	margin-left: 20%;
+	margin-right: 20%;
+	background-color: rgb(80, 80, 79);
+	margin-top: 25px;
+	font-size: 25px;
+	.Text__Input {
+		outline: none;
+		border: 1px solid black;
+		border-radius: 15px;
+	}
+}
