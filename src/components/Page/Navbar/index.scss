@@ -9,24 +9,6 @@
 	margin-bottom: 15px;
 	height: 100px;
 
-	.Block {
-		display: flex;
-		justify-content: flex-end;
-		margin-right: 70px;
-		width: 100%;
-		.cl__element {
-			width: 70%;
-		}
-		.cl__input {
-			height: 45px;
-			padding: 10px;
-			font-size: 20px;
-		}
-		.Word {
-			font-size: 25px;
-		}
-	}
-
 	.OperatorButton {
 		margin-left: 15px;
 		margin-right: 15px;
@@ -38,5 +20,11 @@
 
 	.OperatorName {
 		font-size: 35px;
+	}
+
+	.Queue {
+		position: absolute;
+		width: 80%;
+		margin-top: 50px;
 	}
 }

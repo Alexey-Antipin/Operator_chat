@@ -1,8 +1,8 @@
 export const initialState = {
-	TokenUser: null,
-	AuthSuccessfulTrue: false,
-	AuthSuccessfulFalse: false,
-	UserEmail: "",
+	tokenUser: null,
+	authSuccessfulTrue: false,
+	authSuccessfulFalse: false,
+	userEmail: "",
 };
 
 export default function reducer(state = initialState, action) {
@@ -10,36 +10,36 @@ export default function reducer(state = initialState, action) {
 		case "TOKEN_USER":
 			return {
 				...state,
-				TokenUser: action.payload,
+				tokenUser: action.payload,
 			};
 		case "NEW_TOKEN_USER":
 			return {
 				...state,
-				TokenUser: action.payload,
+				tokenUser: action.payload,
 			};
 		case "USER_UID":
 			return {
 				...state,
-				UserEmail: action.payload,
+				userEmail: action.payload,
 			};
 		case "SUCCESSFUL_USER_YES":
 			return {
 				...state,
-				AuthSuccessfulTrue: action.payload.AuthSuccessfulTrue,
-				AuthSuccessfulFalse: action.payload.AuthSuccessfulFalse,
+				authSuccessfulTrue: action.payload.authSuccessfulTrue,
+				authSuccessfulFalse: action.payload.authSuccessfulFalse,
 			};
 		case "SUCCESSFUL_USER_NO":
 			return {
 				...state,
-				AuthSuccessfulTrue: action.payload.AuthSuccessfulTrue,
-				AuthSuccessfulFalse: action.payload.AuthSuccessfulFalse,
+				authSuccessfulTrue: action.payload.authSuccessfulTrue,
+				authSuccessfulFalse: action.payload.authSuccessfulFalse,
 			};
 		case "TOKEN_OUT_USER":
 			return {
 				...state,
-				TokenUser: action.payload,
-				AuthSuccessfulTrue: action.payload,
-				AuthSuccessfulFalse: action.payload,
+				tokenUser: action.payload,
+				authSuccessfulTrue: action.payload,
+				authSuccessfulFalse: action.payload,
 			};
 
 		default:

@@ -4,22 +4,23 @@ import {debounce} from "lodash";
 import firebase from "firebase/compat/app";
 import {MapUsers} from "../../../Repeat_components/MapUsers";
 import {MapUserDialog} from "../Dialog";
-import {ThemeContext} from "../../../../context";
+import {themeContext} from "../../../../context";
 import {useNavigate} from "react-router-dom";
 import {FaUserAlt} from "react-icons/fa";
 import {Panel} from "../Panel";
 
 export const Active = () => {
-	const [Messages, setMessages] = useState([]);
-	const [OperatorMess, setOperatorMess] = useState();
-	const [Key, setKey] = useState("0");
-	const {MessUser, setMessUser, value} = useContext(ThemeContext);
+	const [messages, setMessages] = useState([]);
+	const [operatorMess, setOperatorMess] = useState();
+	const [key, setKey] = useState("0");
+	const {messUser, setMessUser, value} = useContext(themeContext);
 	const navigate = useNavigate();
 
 	const FirebaseMessage = debounce(() => {
 		if (value) {
-			const Message = firebase.database().ref("/TechSupport/");
-			Message.orderByChild("ReqText")
+			const messageFirebase = firebase.database().ref("/TechSupport/");
+			messageFirebase
+				.orderByChild("ReqText")
 				.startAt(value)
 				.endAt(value + "\uf8ff")
 				.on("child_added", (snapshot) => {
@@ -30,13 +31,13 @@ export const Active = () => {
 		} else {
 			firebase
 				.database()
-				.ref(`/TechSupport/${Key}`)
+				.ref(`/TechSupport/${key}`)
 				.orderByChild("ReqText")
 				.once("value", (snapshot) => {
 					const data = snapshot.val();
 					const newKey = snapshot.key;
 					setKey(Number(newKey) + 1);
-					setMessages([...Messages, data]);
+					setMessages([...messages, data]);
 					console.log("data", data);
 				});
 		}
@@ -46,52 +47,35 @@ export const Active = () => {
 		FirebaseMessage();
 	}, [value]);
 
-	// const FilterSearch = Messages?.filter((event) => {
-	// 	return event.content.includes(value) || event.writtenBy.includes(value);
-	// });
-
 	const Btn1Click = (index) => {
-		const Message = firebase
+		const chatFirebase = firebase
 			.database()
 			.ref(`/TechSupport/${index}/task/mess/`);
-		Message.once("value", (snapshot) => {
-			const data = snapshot.val();
-			setOperatorMess(data);
-			navigate(`dialog/${index}`);
-		}).then(() => {
-			setMessUser(true);
-		});
+		chatFirebase
+			.once("value", (snapshot) => {
+				const data = snapshot.val();
+				setOperatorMess(data);
+				navigate(`dialog/${index}`);
+			})
+			.then(() => {
+				setMessUser(true);
+			});
 	};
 	const Btn2Click = () => {};
 
-	const MessageUsers = !MessUser ? (
+	const MessageUsers = !messUser ? (
 		<>
 			<MapUsers
-				ScrollBar={"ScrollBar__Messages"}
 				FirebaseMessage={FirebaseMessage}
-				BlockMap={"BlockMap"}
-				BlockPhoto={"BlockPhoto"}
-				CPhoto={"CPhoto"}
 				Photo={FaUserAlt}
-				CRequest_Text={"CRequest_Text"}
-				Massive={Messages}
-				BlockButton={"BlockButton"}
-				ButtonW1={"Продолжить"}
-				ButtonW2={"Сохранить"}
-				TimeMiss={"Пока нету"}
-				b1={"b1"}
-				b2={"b2"}
-				b3={"b3"}
+				massive={messages}
 				Btn1Click={Btn1Click}
 				Btn2Click={Btn2Click}
 			/>
 		</>
 	) : (
 		<div className="Panel__Footer">
-			<MapUserDialog
-				FirebaseMessage={FirebaseMessage}
-				Massive={OperatorMess}
-			/>
+			<MapUserDialog massive={operatorMess} />
 			<Panel />
 		</div>
 	);

@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import firebase from "firebase/compat/app";
-import {Settings} from "../../../Repeat_components/MassiveSettings";
+import {Settings} from "../../../Repeat_components/MassiveSettings/MassiveSettings";
 import "./index.scss";
 
 export const ChatSet = () => {
@@ -29,44 +29,16 @@ export const ChatSet = () => {
 
 			<div className="Array__Settings">
 				<Settings
-					cl={"cl"}
-					cl_name={"cl_name"}
-					cl_btn={"cl_btn"}
-					cl_map={"cl_map"}
-					cl_block={"cl_block"}
-					cl_D_btn={"cl_D_btn"}
-					Massive={phrase}
-					w_name={"Готовые фразы"}
-					w_btn={"Добавить еще"}
-					wD_btn={"-"}
+					massive={phrase}
+					name={"Готовые фразы"}
 					group={"phrase"}
 				/>
 
-				<Settings
-					cl={"cl"}
-					cl_name={"cl_name"}
-					cl_btn={"cl_btn"}
-					cl_map={"cl_map"}
-					cl_block={"cl_block"}
-					cl_D_btn={"cl_D_btn"}
-					Massive={theme}
-					w_name={"Список тем"}
-					w_btn={"Добавить еще"}
-					wD_btn={"-"}
-					group={"theme"}
-				/>
+				<Settings massive={theme} name={"Список тем"} group={"theme"} />
 
 				<Settings
-					cl={"cl"}
-					cl_name={"cl_name"}
-					cl_btn={"cl_btn"}
-					cl_map={"cl_map"}
-					cl_block={"cl_block"}
-					cl_D_btn={"cl_D_btn"}
-					Massive={underTheme}
-					w_name={"Список подтем"}
-					w_btn={"Добавить еще"}
-					wD_btn={"-"}
+					massive={underTheme}
+					name={"Список подтем"}
 					group={"underTheme"}
 				/>
 			</div>

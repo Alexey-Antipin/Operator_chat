@@ -11,38 +11,6 @@
 	margin-left: 20%;
 	margin-right: 20%;
 	background-color: rgb(80, 80, 79);
-
-	.cl {
-		display: flex;
-		flex-direction: column;
-		width: 25%;
-		.cl_name {
-			color: rgb(129, 255, 255);
-			font-size: 25px;
-		}
-
-		.cl_map {
-			.cl_block {
-				display: flex;
-				font-size: 25px;
-				color: rgb(216, 255, 255);
-
-				.cl_D_btn {
-					font-weight: bold;
-					width: 50px;
-					border-radius: 15px;
-					background-color: rgba(215, 241, 255, 0.904);
-				}
-			}
-		}
-		.cl_btn {
-			font-size: 20px;
-			padding: 5px;
-			font-weight: bold;
-			border-radius: 15px;
-			background-color: rgb(155, 231, 245);
-		}
-	}
 }
 
 .Footer__Text {

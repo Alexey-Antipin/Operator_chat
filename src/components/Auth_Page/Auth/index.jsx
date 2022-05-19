@@ -14,7 +14,7 @@ export const Auth = () => {
 
 	const dispatch = useDispatch();
 
-	const onSubmit = async (values) => {
+	const onSubmit = (values) => {
 		try {
 			dispatch({
 				type: "AUTH_USER",
@@ -68,12 +68,12 @@ export const Auth = () => {
 						value={formik.values.email}
 					/>
 					{formik.errors.email ? <>{formik.errors.email}</> : null}
-					{AuthTrue.AuthSuccessfulTrue ? (
+					{AuthTrue.authSuccessfulTrue ? (
 						<>Авторизация прошла успешно</>
 					) : (
 						<></>
 					)}
-					{AuthTrue.AuthSuccessfulFalse ? (
+					{AuthTrue.authSuccessfulFalse ? (
 						<>Не удалось авторизоваться</>
 					) : (
 						<></>

@@ -1,9 +1,9 @@
 import "./index.scss";
 
-export const MapUserDialog = ({Massive}) => {
+export const MapUserDialog = ({massive}) => {
 	return (
 		<div className={"ScrollBar_Dialog"}>
-			{Massive?.map((e, index) => {
+			{massive?.map((e, index) => {
 				return (
 					<div className={"BlockMapUser"} key={index}>
 						<div>{index}</div>

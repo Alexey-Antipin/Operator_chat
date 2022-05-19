@@ -1,21 +1,19 @@
 import React from "react";
+import "./index.scss";
 
 export const SearchUser = ({
 	classBlock,
 	classWord,
 	setValue,
 	value,
-	element,
-	cl__element,
-	cl__input,
+	clInput,
 }) => {
 	return (
 		<>
-			<div className={classBlock}>
-				<div className={cl__element}>{element}</div>
-				<div className={classWord}>Поиск: </div>
+			<div className={classBlock || "Block"}>
+				<div className={classWord || "Word"}>Поиск: </div>
 				<input
-					className={cl__input}
+					className={clInput || "cl__input"}
 					value={value}
 					onChange={(event) => setValue(event.target.value)}
 				/>

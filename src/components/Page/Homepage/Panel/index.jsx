@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import "./index.scss";
 
 export const Panel = () => {
-	const AnswerOperator = [
+	const answerOperator = [
 		{id: 0, answer: ""},
 		{id: 1, answer: "Привет"},
 		{id: 2, answer: "Здравствуйте"},
@@ -12,7 +12,7 @@ export const Panel = () => {
 		{id: 5, answer: "Ожидайте"},
 	];
 
-	const [TextValue, SetTextValue] = useState("");
+	const [textValue, SetTextValue] = useState("");
 	const ValueList = (event) => {
 		SetTextValue(event);
 	};
@@ -28,7 +28,7 @@ export const Panel = () => {
 					<div className="Block__Text">Введите ответ:</div>
 					<textarea
 						className="Block__Area"
-						value={TextValue}
+						value={textValue}
 						onChange={(e) => SetTextValue(e.target.value)}
 					/>
 				</div>
@@ -40,7 +40,7 @@ export const Panel = () => {
 					<select
 						className="Select"
 						onChange={(event) => ValueList(event.target.value)}>
-						{AnswerOperator.map((option) => (
+						{answerOperator.map((option) => (
 							<option value={option.answer} key={option.id}>
 								{option.answer}
 							</option>

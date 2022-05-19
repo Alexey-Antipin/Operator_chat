@@ -1,17 +1,18 @@
 import firebase from "firebase/compat/app";
+import "./index.scss";
 
 export const Settings = ({
-	w_name,
-	Massive,
-	wD_btn,
-	w_btn,
+	name,
+	massive,
+	btnD,
+	btn,
 	group,
 	cl,
-	cl_name,
-	cl_btn,
-	cl_map,
-	cl_block,
-	cl_D_btn,
+	clName,
+	clBtn,
+	clMap,
+	clBlock,
+	clBtnD,
 }) => {
 	const AddWordClick = () => {
 		firebase
@@ -36,19 +37,19 @@ export const Settings = ({
 	};
 
 	return (
-		<div className={cl}>
-			<div className={cl_name}>{w_name}</div>
-			<div className={cl_map}>
-				{Massive != null ? (
-					Massive?.map((word, index) => {
+		<div className={cl || "cl"}>
+			<div className={clName || "cl_name"}>{name}</div>
+			<div className={clMap || "cl_map"}>
+				{massive != null ? (
+					massive?.map((word, index) => {
 						return (
 							<div key={index}>
-								<div className={cl_block}>
+								<div className={clBlock || "cl_block"}>
 									<div>{word}</div>
 									<button
-										className={cl_D_btn}
+										className={clBtnD || "cl_D_btn"}
 										onClick={() => RemoveWordClick(index)}>
-										{wD_btn}
+										{btnD || "-"}
 									</button>
 								</div>
 							</div>
@@ -59,8 +60,10 @@ export const Settings = ({
 				)}
 			</div>
 			<div>
-				<button className={cl_btn} onClick={() => AddWordClick()}>
-					{w_btn}
+				<button
+					className={clBtn || "cl_btn"}
+					onClick={() => AddWordClick()}>
+					{btn || "Добавить еще"}
 				</button>
 			</div>
 		</div>

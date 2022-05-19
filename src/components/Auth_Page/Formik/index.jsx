@@ -50,10 +50,8 @@ export const Login = () => {
 	return (
 		<div className="Formik">
 			<form onSubmit={formik.handleSubmit}>
-				{/* Регистрация */}
 				<div className="Formik__text">Регистрация</div>
 
-				{/* Почта */}
 				<div>
 					<label className="Formik__label" htmlFor="email">
 						Почта
@@ -69,7 +67,6 @@ export const Login = () => {
 					{formik.errors.email ? <>{formik.errors.email}</> : null}
 				</div>
 
-				{/* Пароль */}
 				<div>
 					<label className="Formik__label" htmlFor="password">
 						Пароль
@@ -89,7 +86,6 @@ export const Login = () => {
 					) : null}
 				</div>
 
-				{/* Подтверждение пароля */}
 				<div>
 					<label className="Formik__label" htmlFor="confirmPassword">
 						Подтверждение пароля
@@ -107,7 +103,6 @@ export const Login = () => {
 					) : null}
 				</div>
 
-				{/* Регистрация */}
 				<div className="Formik__button__flex">
 					<Button
 						color="primary"
@@ -119,7 +114,6 @@ export const Login = () => {
 					</Button>
 				</div>
 
-				{/*Войти , забыли пароль ? */}
 				<div className="Formik__Container">
 					<Button
 						color="success"

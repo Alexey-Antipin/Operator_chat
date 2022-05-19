@@ -22,8 +22,8 @@ export const UpdatePass = () => {
 	};
 
 	const initialValues = {
-		New_password: "",
-		Repeat_password: "",
+		newPassword: "",
+		repeatPassword: "",
 	};
 
 	const dispatch = useDispatch();
@@ -31,13 +31,13 @@ export const UpdatePass = () => {
 	const onSubmit = (values) => {
 		dispatch({
 			type: "UPDATE_PASSWORD",
-			payload: {New_password: values.New_password, oobCode},
+			payload: {newPassword: values.newPassword, oobCode},
 		});
 	};
 
 	const validationSchema = Yup.object({
-		New_password: Yup.string().required("Обязательно"),
-		Repeat_password: Yup.string()
+		newPassword: Yup.string().required("Обязательно"),
+		repeatPassword: Yup.string()
 			.oneOf([Yup.ref("New_password")], "Пароли не совпадают")
 			.required("Обязательно"),
 	});
@@ -51,10 +51,8 @@ export const UpdatePass = () => {
 	return (
 		<div className="Update">
 			<form onSubmit={formik.handleSubmit}>
-				{/* Обновить пароль */}
 				<div className="Update__label__Pass">Обновить пароль</div>
 
-				{/* Пароль */}
 				<div>
 					<div className="Update__TextPass">Пароль</div>
 					<input
@@ -63,14 +61,13 @@ export const UpdatePass = () => {
 						type="password"
 						className="Update__Pass"
 						onChange={formik.handleChange}
-						value={formik.values.New_password}
+						value={formik.values.newPassword}
 					/>
-					{formik.errors.New_password ? (
-						<>{formik.errors.New_password}</>
+					{formik.errors.newPassword ? (
+						<>{formik.errors.newPassword}</>
 					) : null}
 				</div>
 
-				{/* Подтверждение пароля */}
 				<div>
 					<div className="Update__TextPass">Подтверждение пароля</div>
 					<input
@@ -79,14 +76,13 @@ export const UpdatePass = () => {
 						type="password"
 						className="Update__Pass"
 						onChange={formik.handleChange}
-						value={formik.values.Repeat_password}
+						value={formik.values.repeatPassword}
 					/>
-					{formik.errors.Repeat_password ? (
-						<>{formik.errors.Repeat_password}</>
+					{formik.errors.repeatPassword ? (
+						<>{formik.errors.repeatPassword}</>
 					) : null}
 				</div>
 
-				{/* Отправить ссылку для восстановления */}
 				<Button
 					type="submit"
 					color="success"
@@ -98,7 +94,6 @@ export const UpdatePass = () => {
 
 				<ToastContainer />
 
-				{/*Войти , Регистрация */}
 				<div className="Update__Container">
 					<Button
 						color="info"

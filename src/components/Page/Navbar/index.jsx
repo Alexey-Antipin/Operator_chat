@@ -4,12 +4,12 @@ import {useDispatch} from "react-redux";
 import {SearchUser} from "../../Repeat_components/SearchUser";
 import {Route, Routes} from "react-router-dom";
 import {useContext} from "react";
-import {ThemeContext} from "../../../context/index.js";
+import {themeContext} from "../../../context/index.js";
 import {Queue} from "../Queue";
 
 export const Navbar = () => {
 	const dispatch = useDispatch();
-	const {setValue, value} = useContext(ThemeContext);
+	const {setValue, value} = useContext(themeContext);
 
 	const TokenOutUser = () => {
 		dispatch({type: "TOKEN_OUT_USER", payload: false});
@@ -19,27 +19,18 @@ export const Navbar = () => {
 		<div className="Navbar__User">
 			<ButtonTurn
 				YourClick={TokenOutUser}
-				ClassButton={"OperatorButton"}
-				ClassName={"OperatorName"}
-				ClassChildren={"OperatorChildren"}
-				Word={"Operator@mail.ru"}
-				Children={"Выход"}
-				URL_LINK={"/Auth"}
+				classButton={"OperatorButton"}
+				className={"OperatorName"}
+				word={"Operator@mail.ru"}
+				url={"/Auth"}
 			/>
 			<Routes>
 				<Route
-					path="Active/*"
+					path="Active/"
 					element={
 						<>
-							<SearchUser
-								element={<Queue />}
-								cl__element={"cl__element"}
-								cl__input={"cl__input"}
-								classBlock={"Block"}
-								classWord={"Word"}
-								setValue={setValue}
-								value={value}
-							/>
+							<Queue className="Queue" />
+							<SearchUser setValue={setValue} value={value} />
 						</>
 					}
 				/>
@@ -47,9 +38,7 @@ export const Navbar = () => {
 				{/* <Route
 					path="Ending/*"
 					element={
-						<SearchUser
-							classBlock={"Block"}
-							classWord={"Word"}
+						<SearchUser							
 							setValue={setValue}
 							value={value}
 						/>
@@ -59,8 +48,6 @@ export const Navbar = () => {
 					path="Saving/*"
 					element={
 						<SearchUser
-							classBlock={"Block"}
-							classWord={"Word"}
 							setValue={setValue}
 							value={value}
 						/>

@@ -8,7 +8,7 @@ import {Saving} from "./Saving";
 import {Ending} from "./Ending";
 import {connect} from "react-redux";
 import {Navigate} from "react-router-dom";
-import {FirebaseTokenUser} from "../../../sagas/action/index";
+import {firebaseTokenUser} from "../../../sagas/action/index";
 import {ChatSet} from "../Settings_text/ChatSet";
 import firebase from "firebase/compat/app";
 import "firebase/compat/database";
@@ -16,11 +16,11 @@ import "firebase/compat/auth";
 
 class Page extends Component {
 	componentDidMount() {
-		const {FirebaseTokenUser} = this.props;
-		firebase.auth().onIdTokenChanged(function (User) {
-			if (User) {
-				User.getIdToken(true).then((Token) => {
-					FirebaseTokenUser(Token);
+		const {firebaseTokenUser} = this.props;
+		firebase.auth().onIdTokenChanged(function (user) {
+			if (user) {
+				user.getIdToken(true).then((token) => {
+					firebaseTokenUser(token);
 				});
 			} else {
 				<Navigate replace to="/Auth" />;
@@ -56,7 +56,7 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = (dispatch) => {
 	return {
-		FirebaseTokenUser: (event) => dispatch(FirebaseTokenUser(event)),
+		firebaseTokenUser: (event) => dispatch(firebaseTokenUser(event)),
 	};
 };
 

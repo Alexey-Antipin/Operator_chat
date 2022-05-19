@@ -1,0 +1,14 @@
+.Block {
+	display: flex;
+	justify-content: flex-end;
+	margin-right: 70px;
+	width: 100%;
+	.cl__input {
+		height: 45px;
+		padding: 10px;
+		font-size: 20px;
+	}
+	.Word {
+		font-size: 25px;
+	}
+}

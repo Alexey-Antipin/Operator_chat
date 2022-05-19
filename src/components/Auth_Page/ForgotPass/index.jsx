@@ -6,15 +6,15 @@ import "react-toastify/dist/ReactToastify.css";
 import "./index.scss";
 
 export const ForgotPass = () => {
-	const [NewPass, setNewPass] = useState("");
+	const [newPass, setNewPass] = useState("");
 	const dispatch = useDispatch();
 
 	const ForgotPassword = () => {
 		try {
-			if (NewPass !== "") {
+			if (newPass !== "") {
 				dispatch({
 					type: "FORGOT_PASS_USER",
-					payload: NewPass,
+					payload: newPass,
 				});
 			}
 		} catch (error) {
@@ -47,7 +47,7 @@ export const ForgotPass = () => {
 						type="email"
 						className="Form__input"
 						onChange={(e) => setNewPass(e.target.value)}
-						value={NewPass}
+						value={newPass}
 					/>
 				</div>
 

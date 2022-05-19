@@ -1,4 +1,4 @@
-export const FirebaseTokenUser = (NewTokenUser) => ({
+export const firebaseTokenUser = (newTokenUser) => ({
 	type: "NEW_TOKEN_USER",
-	payload: NewTokenUser,
+	payload: newTokenUser,
 });

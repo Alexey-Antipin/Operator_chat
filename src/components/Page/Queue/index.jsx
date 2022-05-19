@@ -13,8 +13,8 @@ export const Queue = () => {
 			.equalTo(1)
 			.on("value", (snapshot) => {
 				const data = snapshot.val();
-				const AnswerFromServer = data.length;
-				setQueue([AnswerFromServer]);
+				const answer = data.length;
+				setQueue([answer]);
 			});
 	};
 

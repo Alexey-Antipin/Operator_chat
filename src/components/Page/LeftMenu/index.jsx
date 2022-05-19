@@ -4,10 +4,10 @@ import {FiSave} from "react-icons/fi";
 import {VscVmActive} from "react-icons/vsc";
 import {IoIosCheckmarkCircleOutline} from "react-icons/io";
 import {useContext} from "react";
-import {ThemeContext} from "../../../context";
+import {themeContext} from "../../../context";
 
 export const LeftPage = () => {
-	const {setMessUser} = useContext(ThemeContext);
+	const {setMessUser} = useContext(themeContext);
 
 	const MenuClick = () => {
 		return setMessUser(false);
@@ -16,26 +16,20 @@ export const LeftPage = () => {
 	return (
 		<div className="Block__Buttons">
 			<ButtonTurn
-				ClassButton={"ClassButton"}
-				ClassName={"ClassName"}
-				Word={"Активные"}
-				Children={<VscVmActive className="Icons" />}
+				word={"Активные"}
+				children={<VscVmActive className="Icons" />}
 				YourClick={MenuClick}
-				URL_LINK={"Active"}
+				url={"Active"}
 			/>
 			<ButtonTurn
-				ClassButton={"ClassButton"}
-				ClassName={"ClassName"}
-				Word={"Завершенные"}
-				Children={<IoIosCheckmarkCircleOutline className="Icons" />}
-				URL_LINK={"Ending"}
+				word={"Завершенные"}
+				children={<IoIosCheckmarkCircleOutline className="Icons" />}
+				url={"Ending"}
 			/>
 			<ButtonTurn
-				ClassButton={"ClassButton"}
-				ClassName={"ClassName"}
-				Word={"Сохраненные"}
-				Children={<FiSave className="Icons" />}
-				URL_LINK={"Saving"}
+				word={"Сохраненные"}
+				children={<FiSave className="Icons" />}
+				url={"Saving"}
 			/>
 		</div>
 	);

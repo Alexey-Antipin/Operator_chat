@@ -7,18 +7,18 @@ import {Login} from "../components/Auth_Page/Formik";
 import Page from "../components/Page/Homepage";
 import {NotFound} from "../components/Auth_Page/NotFound";
 import {UpdatePass} from "../components/Auth_Page/UpdatePass";
-import {ThemeContext} from "../context/index.js";
+import {themeContext} from "../context/index.js";
 import "./App.scss";
 
 function App() {
 	const [value, setValue] = useState("");
-	const [MessUser, setMessUser] = useState(false);
+	const [messUser, setMessUser] = useState(false);
 	const Account = useSelector((state) => state.reducer);
 
 	return (
 		<div className="App">
-			<ThemeContext.Provider
-				value={{setMessUser, MessUser, setValue, value}}>
+			<themeContext.Provider
+				value={{setMessUser, messUser, setValue, value}}>
 				<BrowserRouter>
 					<Routes>
 						<Route path="/Login" element={<Login />} />
@@ -26,7 +26,7 @@ function App() {
 						<Route path="/ForgotPass" element={<ForgotPass />} />
 						<Route path="/UpdatePass" element={<UpdatePass />} />
 
-						{Account.TokenUser ? (
+						{Account.tokenUser ? (
 							<Route path="/HomePage/*" element={<Page />} />
 						) : (
 							<Route
@@ -41,7 +41,7 @@ function App() {
 						<Route path="*" element={<NotFound />} />
 					</Routes>
 				</BrowserRouter>
-			</ThemeContext.Provider>
+			</themeContext.Provider>
 		</div>
 	);
 }
