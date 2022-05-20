@@ -16,27 +16,27 @@ export const Navbar = () => {
 	};
 
 	return (
-		<div className="Navbar__User">
+		<div className="navbar">
 			<ButtonTurn
 				YourClick={TokenOutUser}
-				classButton={"OperatorButton"}
-				className={"OperatorName"}
+				classButton={"operator__button"}
+				className={"operator__name"}
 				word={"Operator@mail.ru"}
-				url={"/Auth"}
+				url={"/auth"}
 			/>
 			<Routes>
 				<Route
-					path="Active/"
+					path="active/"
 					element={
 						<>
-							<Queue className="Queue" />
+							<Queue />
 							<SearchUser setValue={setValue} value={value} />
 						</>
 					}
 				/>
 
 				{/* <Route
-					path="Ending/*"
+					path="ending/"
 					element={
 						<SearchUser							
 							setValue={setValue}
@@ -45,7 +45,7 @@ export const Navbar = () => {
 					}
 				/>
 				<Route
-					path="Saving/*"
+					path="saving/"
 					element={
 						<SearchUser
 							setValue={setValue}

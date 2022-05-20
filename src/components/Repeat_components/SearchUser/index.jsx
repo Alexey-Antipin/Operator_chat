@@ -4,16 +4,16 @@ import "./index.scss";
 export const SearchUser = ({
 	classBlock,
 	classWord,
+	classInput,
 	setValue,
 	value,
-	clInput,
 }) => {
 	return (
 		<>
-			<div className={classBlock || "Block"}>
-				<div className={classWord || "Word"}>Поиск: </div>
+			<div className={classBlock || "class__block"}>
+				<div className={classWord || "class__word"}>Поиск: </div>
 				<input
-					className={clInput || "cl__input"}
+					className={classInput || "class__input"}
 					value={value}
 					onChange={(event) => setValue(event.target.value)}
 				/>

@@ -4,7 +4,7 @@ import "./index.scss";
 
 export const ButtonTurn = ({
 	url,
-	yourClick,
+	click,
 	classButton,
 	children,
 	className,
@@ -14,12 +14,12 @@ export const ButtonTurn = ({
 		<>
 			<Link to={`${url}`}>
 				<button
-					onClick={yourClick}
-					className={classButton || "ClButton"}>
+					onClick={click}
+					className={classButton || "class__button"}>
 					<div>{children || "Выход"}</div>
 				</button>
 			</Link>
-			<div className={className || "ClName"}>{word}</div>
+			<div className={className || "class__name"}>{word}</div>
 		</>
 	);
 };

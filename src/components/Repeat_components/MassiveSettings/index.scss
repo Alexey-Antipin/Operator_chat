@@ -1,19 +1,18 @@
-.cl {
+.class__container {
 	display: flex;
 	flex-direction: column;
 	width: 25%;
-	.cl_name {
+	.class__group {
 		color: rgb(129, 255, 255);
 		font-size: 25px;
 	}
 
-	.cl_map {
-		.cl_block {
+	.class__map {
+		.class__block-button {
 			display: flex;
 			font-size: 25px;
 			color: rgb(216, 255, 255);
-
-			.cl_D_btn {
+			.class__button-delete {
 				font-weight: bold;
 				width: 50px;
 				border-radius: 15px;
@@ -21,7 +20,7 @@
 			}
 		}
 	}
-	.cl_btn {
+	.class__button-add {
 		font-size: 20px;
 		padding: 5px;
 		font-weight: bold;

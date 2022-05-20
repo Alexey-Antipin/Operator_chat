@@ -23,7 +23,7 @@ export const Queue = () => {
 	}, []);
 
 	return (
-		<div className="Queue">
+		<div className="queue">
 			{queue?.map((status, index) => {
 				return (
 					<div key={index}>

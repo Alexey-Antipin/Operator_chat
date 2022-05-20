@@ -7,29 +7,30 @@ import {useContext} from "react";
 import {themeContext} from "../../../context";
 
 export const LeftPage = () => {
-	const {setMessUser} = useContext(themeContext);
+	const {messUser, setMessUser} = useContext(themeContext);
 
 	const MenuClick = () => {
-		return setMessUser(false);
+		setMessUser(true);
+		console.log("1000", messUser);
 	};
 
 	return (
-		<div className="Block__Buttons">
+		<div className="block__buttons">
 			<ButtonTurn
 				word={"Активные"}
-				children={<VscVmActive className="Icons" />}
-				YourClick={MenuClick}
-				url={"Active"}
+				children={<VscVmActive className="icons" />}
+				click={() => MenuClick()}
+				url={"active"}
 			/>
 			<ButtonTurn
 				word={"Завершенные"}
-				children={<IoIosCheckmarkCircleOutline className="Icons" />}
-				url={"Ending"}
+				children={<IoIosCheckmarkCircleOutline className="icons" />}
+				url={"ending"}
 			/>
 			<ButtonTurn
 				word={"Сохраненные"}
-				children={<FiSave className="Icons" />}
-				url={"Saving"}
+				children={<FiSave className="icons" />}
+				url={"saving"}
 			/>
 		</div>
 	);

@@ -2,21 +2,21 @@ import "./index.scss";
 
 export const MapUserDialog = ({massive}) => {
 	return (
-		<div className={"ScrollBar_Dialog"}>
+		<div className={"scroll"}>
 			{massive?.map((e, index) => {
 				return (
-					<div className={"BlockMapUser"} key={index}>
+					<div className={"block__text"} key={index}>
 						<div>{index}</div>
 
-						<div className={"CwrittenBy"}>
+						<div>
 							CwrittenBy___
 							{e?.writtenBy}
 						</div>
-						<div className={"Ccontent"}>
+						<div>
 							Content___
 							{e?.content}
 						</div>
-						<div className={"Ctimestamp"}>
+						<div>
 							Timestamp___
 							{e?.timestamp}
 						</div>

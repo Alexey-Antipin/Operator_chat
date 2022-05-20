@@ -2,29 +2,29 @@ import "./index.scss";
 
 export const Profile = () => {
 	return (
-		<div className="Profile">
-			<div className="Profile__UpdatePass">Обновить пароль</div>
+		<div className="profile">
+			<div className="profile__text">Обновить пароль</div>
 
 			<div>Имя</div>
 			<input />
 
-			<div className="Profile__Avatar">
+			<div className="avatar">
 				<div>Аватар</div>
-				<div className="Avatar_m">Картинка</div>
+				<div className="avatar__png">Картинка</div>
 				<button>Загрузить новый</button>
 			</div>
 
 			<div>
 				<div>Пароль</div>
-				<input className="Profile__Pass" />
+				<input className="profile__input" />
 			</div>
 
 			<div>
 				<div>Подтверждение пароля</div>
-				<input className="Profile__ConfirmPass" />
+				<input className="profile__input-confirm" />
 			</div>
 
-			<button className="Profile__Update">Обновить профиль</button>
+			<button className="profile__button-update">Обновить профиль</button>
 		</div>
 	);
 };

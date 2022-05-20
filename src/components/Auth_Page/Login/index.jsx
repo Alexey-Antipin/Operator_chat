@@ -48,19 +48,19 @@ export const Login = () => {
 	});
 
 	return (
-		<div className="Formik">
+		<div className="formik">
 			<form onSubmit={formik.handleSubmit}>
-				<div className="Formik__text">Регистрация</div>
+				<div className="formik__text">Регистрация</div>
 
 				<div>
-					<label className="Formik__label" htmlFor="email">
+					<label className="formik__label" htmlFor="email">
 						Почта
 					</label>
 					<input
 						id="email"
 						name="email"
 						type="email"
-						className="Formik__input"
+						className="formik__input"
 						onChange={formik.handleChange}
 						value={formik.values.email}
 					/>
@@ -68,33 +68,33 @@ export const Login = () => {
 				</div>
 
 				<div>
-					<label className="Formik__label" htmlFor="password">
+					<label className="formik__label" htmlFor="password">
 						Пароль
 					</label>
 					<input
 						id="password"
 						name="password"
 						type="password"
-						className="Formik__input"
+						className="formik__input"
 						onChange={formik.handleChange}
 						value={formik.values.password}
 					/>
 					{formik.errors.password ? (
-						<div className="Formik_Error">
+						<div className="formik__error">
 							{formik.errors.password}
 						</div>
 					) : null}
 				</div>
 
 				<div>
-					<label className="Formik__label" htmlFor="confirmPassword">
+					<label className="formik__label" htmlFor="confirmPassword">
 						Подтверждение пароля
 					</label>
 					<input
 						id="confirmPassword"
 						name="confirmPassword"
 						type="confirmPassword"
-						className="Formik__input"
+						className="formik__input"
 						onChange={formik.handleChange}
 						value={formik.values.confirmPassword}
 					/>
@@ -103,32 +103,32 @@ export const Login = () => {
 					) : null}
 				</div>
 
-				<div className="Formik__button__flex">
+				<div className="formik__button-flex">
 					<Button
 						color="primary"
 						outline
 						size="lg"
-						className="Formik__button"
+						className="formik__button"
 						type="submit">
 						Регистрация
 					</Button>
 				</div>
 
-				<div className="Formik__Container">
+				<div className="formik__container">
 					<Button
 						color="success"
 						outline
 						size="lg"
-						className="Formik__button__sign">
-						<Link to="/Auth">Войти</Link>
+						className="formik__button-sign">
+						<Link to="/auth">Войти</Link>
 					</Button>
 
 					<Button
 						color="danger"
 						outline
 						size="lg"
-						className="Formik__button__ForgotPass">
-						<Link to="/ForgotPass">Забыли пароль?</Link>
+						className="formik__button-forgotPass">
+						<Link to="/forgotPass">Забыли пароль?</Link>
 					</Button>
 				</div>
 			</form>

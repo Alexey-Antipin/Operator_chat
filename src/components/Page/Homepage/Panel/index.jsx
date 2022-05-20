@@ -18,27 +18,27 @@ export const Panel = () => {
 	};
 
 	return (
-		<div className="Form">
+		<div className="form">
 			<form
-				className="Form__Block"
+				className="form__block"
 				onClick={(e) => {
 					e.preventDefault();
 				}}>
-				<div className="Block__TextArea">
-					<div className="Block__Text">Введите ответ:</div>
+				<div className="answer">
+					<div className="answer__text">Введите ответ:</div>
 					<textarea
-						className="Block__Area"
+						className="answer__textarea"
 						value={textValue}
 						onChange={(e) => SetTextValue(e.target.value)}
 					/>
 				</div>
 			</form>
 
-			<div className="Block">
+			<div className="option">
 				<div>
-					<div className="Block__Text">Или выберите из готовых:</div>
+					<div className="option__text">Или выберите из готовых:</div>
 					<select
-						className="Select"
+						className="option__select"
 						onChange={(event) => ValueList(event.target.value)}>
 						{answerOperator.map((option) => (
 							<option value={option.answer} key={option.id}>
@@ -48,8 +48,8 @@ export const Panel = () => {
 					</select>
 				</div>
 
-				<Link to="/HomePage/ChatSet">
-					<button className="Block__Button">Настройки</button>
+				<Link to="/homePage/chatSet">
+					<button className="option__button">Настройки</button>
 				</Link>
 			</div>
 		</div>

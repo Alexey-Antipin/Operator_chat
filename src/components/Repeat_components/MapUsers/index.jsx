@@ -1,26 +1,26 @@
 import React from "react";
-import "./index.scss";
 import InfiniteScroll from "react-infinite-scroller";
+import "./index.scss";
 
 export const MapUsers = ({
 	massive,
-	scrollBar,
-	blockMap,
-	blockPhoto,
-	cPhoto,
-	cRequestText,
-	blockButton,
+	Photo,
 	buttonW1,
 	buttonW2,
-	Photo,
-	timeMiss,
-	clBtn,
+	timeMissWord,
 	Btn1Click,
 	Btn2Click,
 	FirebaseMessage,
+	classScrollBar,
+	classBlockMap,
+	classBlockPhoto,
+	classPhoto,
+	classRequestText,
+	classBlockButton,
+	classButton,
 }) => {
 	return (
-		<div className={scrollBar || "ScrollBar__Messages"}>
+		<div className={classScrollBar || "scrollBar__mess"}>
 			<InfiniteScroll
 				loadMore={FirebaseMessage}
 				hasMore={true}
@@ -32,27 +32,39 @@ export const MapUsers = ({
 				useWindow={false}>
 				{massive?.map((message, index) => {
 					return (
-						<div className={blockMap || "BlockMap"} key={index}>
-							<div className={blockPhoto || "BlockPhoto"}>
-								{<Photo className={cPhoto || "CPhoto"} />}
+						<div
+							className={classBlockMap || "container"}
+							key={index}>
+							<div className={classBlockPhoto || "block__photo"}>
+								{
+									<Photo
+										className={
+											classPhoto || "block__photo-size"
+										}
+									/>
+								}
 							</div>
 
-							<div className={cRequestText || "CRequest_Text"}>
+							<div
+								className={
+									classRequestText || "block__requestText"
+								}>
 								{message?.ReqText}
 							</div>
 
-							<div className={blockButton || "BlockButton"}>
+							<div
+								className={classBlockButton || "block__button"}>
 								<button
 									onClick={() => Btn1Click(index)}
-									className={clBtn || "clBtn"}>
+									className={classButton || "button"}>
 									{buttonW1 || "Продолжить"}
 								</button>
 								<div style={{height: "50px", width: "150px"}}>
-									{timeMiss || "Пока нету"}
+									{timeMissWord || "Пока нету"}
 								</div>
 								<button
 									onClick={() => Btn2Click()}
-									className={clBtn || "clBtn"}>
+									className={classButton || "button"}>
 									{buttonW2 || "Сохранить"}
 								</button>
 							</div>

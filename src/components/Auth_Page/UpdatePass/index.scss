@@ -1,38 +1,38 @@
-.Update {
-    display: flex;
-    height: calc(90vh - 0px);
-    align-items: center;
-    justify-content: center;
-    .Update__label__Pass {
-        font-size: 45px;
-        font-weight: bold;
-        margin-bottom: 25px;
-    }
-    .Update__TextPass {
-        font-size: 15px;
-        margin-top: 15px;
-    }
-    .Update__Pass {
-        display: flex;
-        margin-top: 15px;
-        background-color: rgb(212, 255, 241);
-        border-radius: 5px;
-        width: 100%;
-        font-size: 25px;
-    }
-    .Update__buttonRecovery {
-        width: 100%;
-        margin-top: 55%;
-        margin-bottom: 10%;
-    }
-    .Update__Container {
-        display: flex;
-        justify-content: space-between;
-        .Update__button__sign {
-            margin-top: 15px;
-        }
-        .Update__buttonRegistration {
-            margin-top: 15px;
-        }
-    }
+.update {
+	display: flex;
+	height: calc(90vh - 0px);
+	align-items: center;
+	justify-content: center;
+	.update__label-pass {
+		font-size: 45px;
+		font-weight: bold;
+		margin-bottom: 25px;
+	}
+	.update__pass {
+		font-size: 15px;
+		margin-top: 15px;
+	}
+	.update__pass-confirm {
+		display: flex;
+		margin-top: 15px;
+		background-color: rgb(212, 255, 241);
+		border-radius: 5px;
+		width: 100%;
+		font-size: 25px;
+	}
+	.update__button-recovery {
+		width: 100%;
+		margin-top: 55%;
+		margin-bottom: 10%;
+	}
+	.update__container {
+		display: flex;
+		justify-content: space-between;
+		.update__button-sign {
+			margin-top: 15px;
+		}
+		.update__button-registration {
+			margin-top: 15px;
+		}
+	}
 }

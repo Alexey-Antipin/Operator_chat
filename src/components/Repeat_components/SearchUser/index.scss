@@ -1,14 +1,14 @@
-.Block {
+.class__block {
 	display: flex;
 	justify-content: flex-end;
 	margin-right: 70px;
 	width: 100%;
-	.cl__input {
-		height: 45px;
+	.class__input {
+		height: 38px;
 		padding: 10px;
 		font-size: 20px;
 	}
-	.Word {
+	.class__word {
 		font-size: 25px;
 	}
 }

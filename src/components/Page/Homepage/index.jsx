@@ -23,25 +23,25 @@ class Page extends Component {
 					firebaseTokenUser(token);
 				});
 			} else {
-				<Navigate replace to="/Auth" />;
+				<Navigate replace to="/auth" />;
 			}
 		});
 	}
 
 	render() {
 		return (
-			<div className="Page">
-				<div className="Left__Block">
+			<div className="page">
+				<div className="left__block">
 					<LeftPage />
 				</div>
 
-				<div className="Right__Block">
+				<div className="right__block">
 					<Navbar />
 					<Routes>
-						<Route path="Active/*" element={<Active />} />
-						<Route path="Ending/*" element={<Ending />} />
-						<Route path="Saving/*" element={<Saving />} />
-						<Route path="ChatSet" element={<ChatSet />} />
+						<Route path="active/*" element={<Active />} />
+						<Route path="ending/*" element={<Ending />} />
+						<Route path="saving/*" element={<Saving />} />
+						<Route path="chatSet" element={<ChatSet />} />
 					</Routes>
 				</div>
 			</div>

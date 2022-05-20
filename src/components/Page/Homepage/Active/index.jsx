@@ -5,7 +5,7 @@ import firebase from "firebase/compat/app";
 import {MapUsers} from "../../../Repeat_components/MapUsers";
 import {MapUserDialog} from "../Dialog";
 import {themeContext} from "../../../../context";
-import {useNavigate} from "react-router-dom";
+import {Route, Routes, useNavigate} from "react-router-dom";
 import {FaUserAlt} from "react-icons/fa";
 import {Panel} from "../Panel";
 
@@ -33,7 +33,7 @@ export const Active = () => {
 				.database()
 				.ref(`/TechSupport/${key}`)
 				.orderByChild("ReqText")
-				.once("value", (snapshot) => {
+				.on("value", (snapshot) => {
 					const data = snapshot.val();
 					const newKey = snapshot.key;
 					setKey(Number(newKey) + 1);
@@ -58,25 +58,34 @@ export const Active = () => {
 				navigate(`dialog/${index}`);
 			})
 			.then(() => {
-				setMessUser(true);
+				setMessUser(false);
 			});
 	};
 	const Btn2Click = () => {};
 
-	const MessageUsers = !messUser ? (
+	const MessageUsers = messUser ? (
 		<>
 			<MapUsers
 				FirebaseMessage={FirebaseMessage}
 				Photo={FaUserAlt}
 				massive={messages}
-				Btn1Click={Btn1Click}
+				Btn1Click={(index) => Btn1Click(index)}
 				Btn2Click={Btn2Click}
 			/>
 		</>
 	) : (
-		<div className="Panel__Footer">
-			<MapUserDialog massive={operatorMess} />
-			<Panel />
+		<div className="dialog">
+			<Routes>
+				<Route
+					path="/dialog/*"
+					element={
+						<>
+							<MapUserDialog massive={operatorMess} />
+							<Panel />
+						</>
+					}
+				/>
+			</Routes>
 		</div>
 	);
 

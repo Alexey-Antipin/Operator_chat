@@ -42,83 +42,78 @@ export const Auth = () => {
 
 	const SignInput = () => {
 		setTimeout(() => {
-			navigate("/HomePage");
+			navigate("/homePage");
 		}, 2000);
 	};
 
-	const AuthTrue = useSelector((state) => state.reducer);
+	const authTrue = useSelector((state) => state.reducer);
 
 	return (
-		<div className="Auth">
+		<div className="auth">
 			<form onSubmit={formik.handleSubmit}>
-				{/* Авторизация */}
-				<div className="Auth__Text">Авторизация</div>
+				<div className="auth__text">Авторизация</div>
 
-				{/* Почта */}
 				<div>
-					<label className="Auth__label" htmlFor="email">
+					<label className="auth__label" htmlFor="email">
 						Почта
 					</label>
 					<input
-						id="Auth_email"
+						id="auth_email"
 						name="email"
 						type="email"
-						className="Auth__input"
+						className="auth__input"
 						onChange={formik.handleChange}
 						value={formik.values.email}
 					/>
 					{formik.errors.email ? <>{formik.errors.email}</> : null}
-					{AuthTrue.authSuccessfulTrue ? (
+					{authTrue.authSuccessfulTrue ? (
 						<>Авторизация прошла успешно</>
 					) : (
 						<></>
 					)}
-					{AuthTrue.authSuccessfulFalse ? (
+					{authTrue.authSuccessfulFalse ? (
 						<>Не удалось авторизоваться</>
 					) : (
 						<></>
 					)}
 				</div>
 
-				{/* Пароль */}
 				<div>
-					<label className="Auth__label" htmlFor="firstName">
+					<label className="auth__label" htmlFor="firstName">
 						Пароль
 					</label>
 					<input
-						id="Auth_password"
+						id="auth_password"
 						name="password"
 						type="password"
-						className="Auth__input"
+						className="auth__input"
 						onChange={formik.handleChange}
 						value={formik.values.password}
 					/>
 				</div>
 
-				{/* Авторизация */}
-				<div className="Auth__Button__Flex">
+				<div className="auth__button-flex">
 					<button
-						className="Auth__Button"
+						className="auth__button"
 						onClick={() => SignInput()}
 						type="submit">
 						Авторизация
 					</button>
 				</div>
 
-				{/*Войти через VK, GOOGLE */}
-				<div className="Auth__Container__Net">
-					<div className="Auth__Center">
-						<button className="Auth__Button__VK">
-							<Link to="/Login">
+				<div className="auth__container-net">
+					<div className="auth__center">
+						<button className="auth__button-vk">
+							<Link to="/login">
 								<FaVk />
 							</Link>
 						</button>
 						<div>Войти через VK</div>
 					</div>
 
-					<div className="Auth__Center">
-						<button className="Auth__Button__Google">
-							<Link to="/Forgotpass">
+					<div className="auth__center">
+						<button className="auth__button-google">
+							<Link to="/forgotpass">
 								<FaGoogle />
 							</Link>
 						</button>
@@ -126,14 +121,13 @@ export const Auth = () => {
 					</div>
 				</div>
 
-				{/*Войти , Регистрация */}
-				<div className="Auth__Container">
-					<button className="Auth__Button__Registration">
-						<Link to="/Login">Зарегистрироваться</Link>
+				<div className="auth__container">
+					<button className="auth__button-registration">
+						<Link to="/login">Зарегистрироваться</Link>
 					</button>
 
-					<button className="Auth__Button__ForgotPass">
-						<Link to="/Forgotpass">Забыли пароль?</Link>
+					<button className="auth__button-forgotPass">
+						<Link to="/forgotpass">Забыли пароль?</Link>
 					</button>
 				</div>
 			</form>

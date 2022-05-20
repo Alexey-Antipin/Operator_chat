@@ -4,52 +4,60 @@ import "./index.scss";
 export const Settings = ({
 	name,
 	massive,
-	btnD,
-	btn,
+	button,
 	group,
-	cl,
-	clName,
-	clBtn,
-	clMap,
-	clBlock,
-	clBtnD,
+	classContainer,
+	className,
+	classMap,
+	classBlock,
+	classButtonDelete,
+	classButton,
 }) => {
 	const AddWordClick = () => {
 		firebase
 			.database()
-			.ref(`/Settings/${group}/`)
+			.ref(`/settings/${group}/`)
 			.limitToLast(1)
 			.once("child_added", function (snapshot) {
 				const key = snapshot.key;
-				const MasKey = Number(key) + 1;
-				firebase.database().ref(`/Settings/${group}/${MasKey}`).set(1);
+				const massiveKey = Number(key) + 1;
+				firebase
+					.database()
+					.ref(`/settings/${group}/${massiveKey}`)
+					.set(1);
 				return;
 			});
 	};
 
 	const RemoveWordClick = (index) => {
-		const Remove_Word = firebase
+		const removeWord = firebase
 			.database()
-			.ref(`/Settings/${group}/${index}`);
-		Remove_Word.remove().then(function () {
+			.ref(`/settings/${group}/${index}`);
+		removeWord.remove().then(function () {
 			console.log("Remove succeeded.");
 		});
 	};
 
 	return (
-		<div className={cl || "cl"}>
-			<div className={clName || "cl_name"}>{name}</div>
-			<div className={clMap || "cl_map"}>
+		<div className={classContainer || "class__container"}>
+			<div className={className || "class__group"}>{name}</div>
+			<div className={classMap || "class__map"}>
 				{massive != null ? (
 					massive?.map((word, index) => {
 						return (
 							<div key={index}>
-								<div className={clBlock || "cl_block"}>
+								<div
+									className={
+										classBlock || "class__block-button"
+									}>
 									<div>{word}</div>
 									<button
-										className={clBtnD || "cl_D_btn"}
+										className={
+											classButtonDelete ||
+											"class__button-delete"
+										}
 										onClick={() => RemoveWordClick(index)}>
-										{btnD || "-"}
+										{button || "-"}
 									</button>
 								</div>
 							</div>
@@ -61,9 +69,9 @@ export const Settings = ({
 			</div>
 			<div>
 				<button
-					className={clBtn || "cl_btn"}
+					className={classButton || "class__button-add"}
 					onClick={() => AddWordClick()}>
-					{btn || "Добавить еще"}
+					{button || "Добавить еще"}
 				</button>
 			</div>
 		</div>

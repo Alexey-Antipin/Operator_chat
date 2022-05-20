@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import firebase from "firebase/compat/app";
-import {Settings} from "../../../Repeat_components/MassiveSettings/MassiveSettings";
+import {Settings} from "../../../Repeat_components/MassiveSettings";
 import "./index.scss";
 
 export const ChatSet = () => {
@@ -25,9 +25,9 @@ export const ChatSet = () => {
 
 	return (
 		<div>
-			<div className="Header__Text">Настройки диалогов</div>
+			<div className="text">Настройки диалогов</div>
 
-			<div className="Array__Settings">
+			<div className="array__settings">
 				<Settings
 					massive={phrase}
 					name={"Готовые фразы"}
@@ -43,10 +43,10 @@ export const ChatSet = () => {
 				/>
 			</div>
 
-			<div className="Footer__Text">
+			<div className="block__text">
 				<div>Автоматическое приветствие:</div>
 				<input
-					className="Text__Input"
+					className="text__input"
 					value={value}
 					onChange={(e) => setValue(e.target.value)}
 				/>

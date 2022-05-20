@@ -1,12 +1,12 @@
 import React from "react";
 import {ToastContainer} from "react-toastify";
 import {Link, useNavigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import * as Yup from "yup";
 import {useFormik} from "formik";
 import {useSearchParams} from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 import {Button} from "reactstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.scss";
 
 export const UpdatePass = () => {
@@ -49,17 +49,17 @@ export const UpdatePass = () => {
 	});
 
 	return (
-		<div className="Update">
+		<div className="update">
 			<form onSubmit={formik.handleSubmit}>
-				<div className="Update__label__Pass">Обновить пароль</div>
+				<div className="update__label-pass">Обновить пароль</div>
 
 				<div>
-					<div className="Update__TextPass">Пароль</div>
+					<div className="update__pass">Пароль</div>
 					<input
-						id="New_password"
-						name="New_password"
+						id="newPassword"
+						name="newPassword"
 						type="password"
-						className="Update__Pass"
+						className="update__pass"
 						onChange={formik.handleChange}
 						value={formik.values.newPassword}
 					/>
@@ -69,12 +69,14 @@ export const UpdatePass = () => {
 				</div>
 
 				<div>
-					<div className="Update__TextPass">Подтверждение пароля</div>
+					<div className="update__pass-confirm">
+						Подтверждение пароля
+					</div>
 					<input
-						id="Repeat_password"
-						name="Repeat_password"
+						id="repeatPassword"
+						name="repeatPassword"
 						type="password"
-						className="Update__Pass"
+						className="update__pass"
 						onChange={formik.handleChange}
 						value={formik.values.repeatPassword}
 					/>
@@ -87,26 +89,26 @@ export const UpdatePass = () => {
 					type="submit"
 					color="success"
 					outline
-					className="Update__buttonRecovery"
+					className="update__button-recovery"
 					onClick={() => TransitionOnAuth()}>
 					Отправить ссылку для восстановления
 				</Button>
 
 				<ToastContainer />
 
-				<div className="Update__Container">
+				<div className="update__container">
 					<Button
 						color="info"
 						outline
-						className="Update__button__sign">
-						<Link to="/Auth">Войти</Link>
+						className="update__button-sign">
+						<Link to="/auth">Войти</Link>
 					</Button>
 
 					<Button
 						color="info"
 						outline
-						className="Update__buttonRegistration">
-						<Link to="/Login">Регистрация</Link>
+						className="update__button-registration">
+						<Link to="/login">Регистрация</Link>
 					</Button>
 				</div>
 			</form>

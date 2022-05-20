@@ -1,9 +1,9 @@
-.Header__Text {
+.text {
 	display: flex;
 	justify-content: center;
 	font-size: 35px;
 }
-.Array__Settings {
+.array__settings {
 	display: flex;
 	justify-content: center;
 	flex-direction: row;
@@ -13,7 +13,7 @@
 	background-color: rgb(80, 80, 79);
 }
 
-.Footer__Text {
+.block__text {
 	display: flex;
 	justify-content: center;
 	padding: 15px;
@@ -24,7 +24,7 @@
 	background-color: rgb(80, 80, 79);
 	margin-top: 25px;
 	font-size: 25px;
-	.Text__Input {
+	.text__input {
 		outline: none;
 		border: 1px solid black;
 		border-radius: 15px;
