@@ -11,14 +11,14 @@ export const Navbar = () => {
 	const dispatch = useDispatch();
 	const {setValue, value} = useContext(themeContext);
 
-	const TokenOutUser = () => {
+	const tokenOutUser = () => {
 		dispatch({type: "TOKEN_OUT_USER", payload: false});
 	};
 
 	return (
 		<div className="navbar">
 			<ButtonTurn
-				YourClick={TokenOutUser}
+				YourClick={tokenOutUser}
 				classButton={"operator__button"}
 				className={"operator__name"}
 				word={"Operator@mail.ru"}
@@ -27,12 +27,7 @@ export const Navbar = () => {
 			<Routes>
 				<Route
 					path="active/"
-					element={
-						<>
-							<Queue />
-							<SearchUser setValue={setValue} value={value} />
-						</>
-					}
+					element={<SearchUser setValue={setValue} value={value} />}
 				/>
 
 				{/* <Route
@@ -53,6 +48,15 @@ export const Navbar = () => {
 						/>
 					}
 				/> */}
+				<Route
+					path="clients"
+					element={
+						<>
+							<Queue />
+							<SearchUser setValue={setValue} value={value} />
+						</>
+					}
+				/>
 			</Routes>
 		</div>
 	);

@@ -13,6 +13,7 @@ import {ChatSet} from "../Settings_text/ChatSet";
 import firebase from "firebase/compat/app";
 import "firebase/compat/database";
 import "firebase/compat/auth";
+import {Clients} from "./Clients";
 
 class Page extends Component {
 	componentDidMount() {
@@ -42,6 +43,7 @@ class Page extends Component {
 						<Route path="ending/*" element={<Ending />} />
 						<Route path="saving/*" element={<Saving />} />
 						<Route path="chatSet" element={<ChatSet />} />
+						<Route path="clients" element={<Clients />} />
 					</Routes>
 				</div>
 			</div>

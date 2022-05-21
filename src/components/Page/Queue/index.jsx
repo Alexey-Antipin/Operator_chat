@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 export const Queue = () => {
 	const [queue, setQueue] = useState([]);
 
-	const QueuePeople = () => {
+	const queuePeople = () => {
 		firebase
 			.database()
 			.ref(`/TechSupport/`)
@@ -19,7 +19,7 @@ export const Queue = () => {
 	};
 
 	useEffect(() => {
-		QueuePeople();
+		queuePeople();
 	}, []);
 
 	return (

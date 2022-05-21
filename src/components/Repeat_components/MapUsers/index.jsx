@@ -10,7 +10,7 @@ export const MapUsers = ({
 	timeMissWord,
 	Btn1Click,
 	Btn2Click,
-	FirebaseMessage,
+	firebaseMessage,
 	classScrollBar,
 	classBlockMap,
 	classBlockPhoto,
@@ -18,12 +18,13 @@ export const MapUsers = ({
 	classRequestText,
 	classBlockButton,
 	classButton,
+	hasMore,
 }) => {
 	return (
 		<div className={classScrollBar || "scrollBar__mess"}>
 			<InfiniteScroll
-				loadMore={FirebaseMessage}
-				hasMore={true}
+				loadMore={firebaseMessage}
+				hasMore={hasMore}
 				loader={
 					<div className="loader" key={0}>
 						Загрузка...
@@ -55,7 +56,7 @@ export const MapUsers = ({
 							<div
 								className={classBlockButton || "block__button"}>
 								<button
-									onClick={() => Btn1Click(index)}
+									onClick={() => Btn1Click(message.index)}
 									className={classButton || "button"}>
 									{buttonW1 || "Продолжить"}
 								</button>

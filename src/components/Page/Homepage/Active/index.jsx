@@ -12,18 +12,19 @@ import {Panel} from "../Panel";
 export const Active = () => {
 	const [messages, setMessages] = useState([]);
 	const [operatorMess, setOperatorMess] = useState();
-	const [key, setKey] = useState("0");
+	const [hasMore, setHasMore] = useState(false);
+	const [counter, setCounter] = useState(null);
 	const {messUser, setMessUser, value} = useContext(themeContext);
 	const navigate = useNavigate();
 
-	const FirebaseMessage = debounce(() => {
+	const firebaseActive = debounce(() => {
 		if (value) {
 			const messageFirebase = firebase.database().ref("/TechSupport/");
 			messageFirebase
 				.orderByChild("ReqText")
 				.startAt(value)
 				.endAt(value + "\uf8ff")
-				.on("child_added", (snapshot) => {
+				.once("child_added", (snapshot) => {
 					const data = snapshot.val();
 					console.log(data);
 					setMessages([data]);
@@ -31,20 +32,21 @@ export const Active = () => {
 		} else {
 			firebase
 				.database()
-				.ref(`/TechSupport/${key}`)
-				.orderByChild("ReqText")
-				.on("value", (snapshot) => {
+				.ref(`/TechSupport/`)
+				.orderByChild("index")
+				.startAfter(counter)
+				.limitToFirst(10)
+				.once("child_added", (snapshot) => {
 					const data = snapshot.val();
-					const newKey = snapshot.key;
-					setKey(Number(newKey) + 1);
-					setMessages([...messages, data]);
-					console.log("data", data);
+					setMessages((messages) => [...messages, data]);
+					setCounter(counter + 9);
+					setHasMore(true);
 				});
 		}
 	}, 300);
 
 	useEffect(() => {
-		FirebaseMessage();
+		firebaseActive();
 	}, [value]);
 
 	const Btn1Click = (index) => {
@@ -63,14 +65,15 @@ export const Active = () => {
 	};
 	const Btn2Click = () => {};
 
-	const MessageUsers = messUser ? (
+	const messageUsers = messUser ? (
 		<>
 			<MapUsers
-				FirebaseMessage={FirebaseMessage}
+				firebaseMessage={firebaseActive}
 				Photo={FaUserAlt}
 				massive={messages}
 				Btn1Click={(index) => Btn1Click(index)}
 				Btn2Click={Btn2Click}
+				hasMore={hasMore}
 			/>
 		</>
 	) : (
@@ -89,5 +92,5 @@ export const Active = () => {
 		</div>
 	);
 
-	return <>{MessageUsers}</>;
+	return <>{messageUsers}</>;
 };

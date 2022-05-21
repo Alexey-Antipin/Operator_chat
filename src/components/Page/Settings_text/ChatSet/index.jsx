@@ -9,7 +9,7 @@ export const ChatSet = () => {
 	const [theme, setTheme] = useState([]);
 	const [underTheme, setUnderTheme] = useState([]);
 
-	const FirebaseSettings = () => {
+	const firebaseSettings = () => {
 		const massive = firebase.database().ref(`/Settings`);
 		massive.on("value", (snapshot) => {
 			const data = snapshot.val();
@@ -20,7 +20,7 @@ export const ChatSet = () => {
 	};
 
 	useEffect(() => {
-		FirebaseSettings();
+		firebaseSettings();
 	}, []);
 
 	return (

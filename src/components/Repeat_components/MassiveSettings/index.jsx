@@ -13,7 +13,7 @@ export const Settings = ({
 	classButtonDelete,
 	classButton,
 }) => {
-	const AddWordClick = () => {
+	const addWordClick = () => {
 		firebase
 			.database()
 			.ref(`/settings/${group}/`)
@@ -29,7 +29,7 @@ export const Settings = ({
 			});
 	};
 
-	const RemoveWordClick = (index) => {
+	const removeWordClick = (index) => {
 		const removeWord = firebase
 			.database()
 			.ref(`/settings/${group}/${index}`);
@@ -56,7 +56,7 @@ export const Settings = ({
 											classButtonDelete ||
 											"class__button-delete"
 										}
-										onClick={() => RemoveWordClick(index)}>
+										onClick={() => removeWordClick(index)}>
 										{button || "-"}
 									</button>
 								</div>
@@ -70,7 +70,7 @@ export const Settings = ({
 			<div>
 				<button
 					className={classButton || "class__button-add"}
-					onClick={() => AddWordClick()}>
+					onClick={() => addWordClick()}>
 					{button || "Добавить еще"}
 				</button>
 			</div>
