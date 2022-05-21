@@ -11,7 +11,7 @@ import {Panel} from "../Panel";
 
 export const Active = () => {
 	const [messages, setMessages] = useState([]);
-	const [operatorMess, setOperatorMess] = useState();
+	const [filterMess, setFilterMess] = useState();
 	const [hasMore, setHasMore] = useState(false);
 	const [counter, setCounter] = useState(null);
 	const {messUser, setMessUser, value} = useContext(themeContext);
@@ -42,6 +42,8 @@ export const Active = () => {
 					setCounter(counter + 9);
 					setHasMore(true);
 				});
+			const arr = messages.filter((d) => d.operatorId === 50);
+			setFilterMess(arr);
 		}
 	}, 300);
 
@@ -56,7 +58,7 @@ export const Active = () => {
 		chatFirebase
 			.once("value", (snapshot) => {
 				const data = snapshot.val();
-				setOperatorMess(data);
+				setMessages(data);
 				navigate(`dialog/${index}`);
 			})
 			.then(() => {
@@ -70,7 +72,7 @@ export const Active = () => {
 			<MapUsers
 				firebaseMessage={firebaseActive}
 				Photo={FaUserAlt}
-				massive={messages}
+				massive={filterMess}
 				Btn1Click={(index) => Btn1Click(index)}
 				Btn2Click={Btn2Click}
 				hasMore={hasMore}
@@ -83,7 +85,7 @@ export const Active = () => {
 					path="/dialog/*"
 					element={
 						<>
-							<MapUserDialog massive={operatorMess} />
+							<MapUserDialog massive={messages} />
 							<Panel />
 						</>
 					}
