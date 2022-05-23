@@ -1,26 +1,57 @@
 import "./index.scss";
-import {useCallback, useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
+import {debounce} from "lodash";
 import {MapUsers} from "../../../Repeat_components/MapUsers";
 import firebase from "firebase/compat/app";
-import {FaUserAlt} from "react-icons/fa";
+import {useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {themeContext} from "../../../../context";
 
 export const Clients = () => {
+	const authTrue = useSelector((state) => state.reducer);
 	const [clientsMessages, setClientsMessages] = useState([]);
+	const [filterMessages, setFilterMessages] = useState([]);
 	const [hasMore, setHasMore] = useState(false);
-	const [after, setAfter] = useState(null);
+	const [counter, setCounter] = useState(null);
+	const {setClient, setMessUser} = useContext(themeContext);
+	const navigate = useNavigate();
 
-	const firebaseClients = () => {
+	const firebaseClients = debounce(() => {
 		firebase
 			.database()
 			.ref(`/TechSupport/`)
 			.orderByChild("index")
-			.startAfter(after)
+			.startAfter(counter)
 			.limitToFirst(10)
 			.once("child_added", (snapshot) => {
 				const data = snapshot.val();
 				setClientsMessages((messages) => [...messages, data]);
-				setAfter(after + 9);
+				setCounter(counter + 9);
 				setHasMore(true);
+			});
+		const arrClients = clientsMessages.filter(
+			(e) => e.operatorId === "" && e.view === ""
+		);
+		setFilterMessages(arrClients);
+	}, 500);
+
+	const Btn2Click = (index) => {
+		const chatFirebase = firebase.database().ref(`/TechSupport/${index}/`);
+		chatFirebase.update({
+			status: 0,
+			view: "active",
+			operatorId: authTrue.userEmail,
+		});
+		firebase
+			.database()
+			.ref(`/TechSupport/${index}/message/`)
+			.once("value", (snapshot) => {
+				const data = snapshot.val();
+				setClient(data);
+				navigate(`/homePage/active/dialog/${index}`);
+			})
+			.then(() => {
+				setMessUser(false);
 			});
 	};
 
@@ -30,9 +61,11 @@ export const Clients = () => {
 
 	return (
 		<MapUsers
-			Photo={FaUserAlt}
-			massive={clientsMessages}
+			massive={filterMessages}
 			firebaseMessage={firebaseClients}
+			classButtonFirst={"block__stop"}
+			Btn2Click={(index) => Btn2Click(index)}
+			buttonW2={"Войти в диалог"}
 			hasMore={hasMore}
 		/>
 	);

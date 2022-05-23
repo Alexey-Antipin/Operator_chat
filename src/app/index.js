@@ -13,12 +13,20 @@ import "./index.scss";
 function App() {
 	const [value, setValue] = useState("");
 	const [messUser, setMessUser] = useState(true);
+	const [client, setClient] = useState([]);
 	const account = useSelector((state) => state.reducer);
 
 	return (
 		<div className="app">
 			<themeContext.Provider
-				value={{setMessUser, messUser, setValue, value}}>
+				value={{
+					client,
+					setClient,
+					setMessUser,
+					messUser,
+					setValue,
+					value,
+				}}>
 				<BrowserRouter>
 					<Routes>
 						<Route path="/login" element={<Login />} />

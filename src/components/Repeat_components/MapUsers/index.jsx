@@ -1,10 +1,10 @@
 import React from "react";
 import InfiniteScroll from "react-infinite-scroller";
+import {FaUserAlt} from "react-icons/fa";
 import "./index.scss";
 
 export const MapUsers = ({
 	massive,
-	Photo,
 	buttonW1,
 	buttonW2,
 	timeMissWord,
@@ -17,14 +17,16 @@ export const MapUsers = ({
 	classPhoto,
 	classRequestText,
 	classBlockButton,
-	classButton,
+	classBlockTime,
+	classButtonFirst,
+	classButtonSecond,
 	hasMore,
 }) => {
 	return (
 		<div className={classScrollBar || "scrollBar__mess"}>
 			<InfiniteScroll
 				loadMore={firebaseMessage}
-				hasMore={hasMore}
+				hasMore={hasMore || false}
 				loader={
 					<div className="loader" key={0}>
 						Загрузка...
@@ -38,7 +40,7 @@ export const MapUsers = ({
 							key={index}>
 							<div className={classBlockPhoto || "block__photo"}>
 								{
-									<Photo
+									<FaUserAlt
 										className={
 											classPhoto || "block__photo-size"
 										}
@@ -50,22 +52,23 @@ export const MapUsers = ({
 								className={
 									classRequestText || "block__requestText"
 								}>
-								{message?.ReqText}
+								{message?.theme}
 							</div>
 
 							<div
 								className={classBlockButton || "block__button"}>
 								<button
 									onClick={() => Btn1Click(message.index)}
-									className={classButton || "button"}>
+									className={classButtonFirst || "button"}>
 									{buttonW1 || "Продолжить"}
 								</button>
-								<div style={{height: "50px", width: "150px"}}>
+								<div
+									className={classBlockTime || "block__time"}>
 									{timeMissWord || "Пока нету"}
 								</div>
 								<button
-									onClick={() => Btn2Click()}
-									className={classButton || "button"}>
+									onClick={() => Btn2Click(message.index)}
+									className={classButtonSecond || "button"}>
 									{buttonW2 || "Сохранить"}
 								</button>
 							</div>
