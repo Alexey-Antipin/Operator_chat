@@ -17,13 +17,15 @@ export const Clients = () => {
 	const navigate = useNavigate();
 
 	const firebaseClients = debounce(() => {
+		console.log("mir");
+
 		firebase
 			.database()
 			.ref(`/TechSupport/`)
 			.orderByChild("index")
 			.startAfter(counter)
 			.limitToFirst(10)
-			.once("child_added", (snapshot) => {
+			.on("child_added", (snapshot) => {
 				const data = snapshot.val();
 				setClientsMessages((messages) => [...messages, data]);
 				setCounter(counter + 9);

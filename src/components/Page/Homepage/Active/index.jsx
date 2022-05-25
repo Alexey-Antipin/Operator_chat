@@ -5,16 +5,17 @@ import firebase from "firebase/compat/app";
 import {MapUsers} from "../../../Repeat_components/MapUsers";
 import {MapUserDialog} from "../Dialog";
 import {themeContext} from "../../../../context";
-import {Route, Routes, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {Panel} from "../Panel";
 import {useSelector} from "react-redux";
 
 export const Active = () => {
 	const [messages, setMessages] = useState([]);
+	const [indexUser, setIndexUser] = useState([]);
 	const [filterMess, setFilterMess] = useState();
 	const [hasMore, setHasMore] = useState(false);
 	const [counter, setCounter] = useState(null);
-	const {client, messUser, setMessUser, value} = useContext(themeContext);
+	const {messUser, setMessUser, value} = useContext(themeContext);
 	const authTrue = useSelector((state) => state.reducer);
 	const navigate = useNavigate();
 
@@ -31,13 +32,14 @@ export const Active = () => {
 					setMessages([data]);
 				});
 		} else {
+			console.log("mir");
 			firebase
 				.database()
 				.ref(`/TechSupport/`)
 				.orderByChild("index")
 				.startAfter(counter)
 				.limitToFirst(10)
-				.once("child_added", (snapshot) => {
+				.on("child_added", (snapshot) => {
 					const data = snapshot.val();
 					setMessages((messages) => [...messages, data]);
 					setCounter(counter + 9);
@@ -56,48 +58,39 @@ export const Active = () => {
 	}, [value]);
 
 	const Btn1Click = (index) => {
-		const chatFirebase = firebase
+		firebase
 			.database()
-			.ref(`/TechSupport/${index}/message/`);
-		chatFirebase
+			.ref(`/TechSupport/${index}/message/`)
 			.once("value", (snapshot) => {
 				const data = snapshot.val();
 				setMessages(data);
 				navigate(`dialog/${index}`);
 			})
 			.then(() => {
+				setIndexUser(index);
 				setMessUser(false);
 			});
 	};
 
 	const Btn2Click = (index) => {
-		const chatFirebase = firebase.database().ref(`/TechSupport/${index}/`);
-		chatFirebase.update({view: "save"});
+		firebase
+			.database()
+			.ref(`/TechSupport/${index}/`)
+			.update({view: "save"});
 	};
 
 	const messageUsers = messUser ? (
-		<>
-			<MapUsers
-				firebaseMessage={firebaseActive}
-				massive={filterMess || client}
-				Btn1Click={(index) => Btn1Click(index)}
-				Btn2Click={(index) => Btn2Click(index)}
-				hasMore={hasMore}
-			/>
-		</>
+		<MapUsers
+			firebaseMessage={firebaseActive}
+			massive={filterMess}
+			Btn1Click={(index) => Btn1Click(index)}
+			Btn2Click={(index) => Btn2Click(index)}
+			hasMore={hasMore}
+		/>
 	) : (
 		<div className="dialog">
-			<Routes>
-				<Route
-					path="/dialog/*"
-					element={
-						<>
-							<MapUserDialog massive={messages} />
-							<Panel />
-						</>
-					}
-				/>
-			</Routes>
+			<MapUserDialog massive={messages} />
+			<Panel indexUser={indexUser} />
 		</div>
 	);
 

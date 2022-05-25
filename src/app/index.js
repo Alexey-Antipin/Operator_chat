@@ -13,15 +13,12 @@ import "./index.scss";
 function App() {
 	const [value, setValue] = useState("");
 	const [messUser, setMessUser] = useState(true);
-	const [client, setClient] = useState([]);
 	const account = useSelector((state) => state.reducer);
 
 	return (
 		<div className="app">
 			<themeContext.Provider
 				value={{
-					client,
-					setClient,
 					setMessUser,
 					messUser,
 					setValue,

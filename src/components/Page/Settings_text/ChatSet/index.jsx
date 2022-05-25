@@ -2,21 +2,23 @@ import {useEffect, useState} from "react";
 import firebase from "firebase/compat/app";
 import {Settings} from "../../../Repeat_components/MassiveSettings";
 import "./index.scss";
+import {useSelector} from "react-redux";
 
 export const ChatSet = () => {
 	const [value, setValue] = useState("");
-	const [phrase, setPhrase] = useState([]);
-	const [theme, setTheme] = useState([]);
-	const [underTheme, setUnderTheme] = useState([]);
+	const [settingsMassive, setSettingsMassive] = useState([]);
+	const operatorId = useSelector((state) => state.reducer);
 
 	const firebaseSettings = () => {
-		const massive = firebase.database().ref(`/Settings`);
-		massive.on("value", (snapshot) => {
-			const data = snapshot.val();
-			setPhrase(data.phrase);
-			setTheme(data.theme);
-			setUnderTheme(data.underTheme);
-		});
+		firebase
+			.database()
+			.ref(`/Profile/`)
+			.orderByChild("operatorId")
+			.equalTo(operatorId.userEmail)
+			.on("child_added", (snapshot) => {
+				const data = snapshot.val().settings;
+				setSettingsMassive(data);
+			});
 	};
 
 	useEffect(() => {
@@ -29,15 +31,19 @@ export const ChatSet = () => {
 
 			<div className="array__settings">
 				<Settings
-					massive={phrase}
+					massive={settingsMassive.phrase}
 					name={"Готовые фразы"}
 					group={"phrase"}
 				/>
 
-				<Settings massive={theme} name={"Список тем"} group={"theme"} />
+				<Settings
+					massive={settingsMassive.theme}
+					name={"Список тем"}
+					group={"theme"}
+				/>
 
 				<Settings
-					massive={underTheme}
+					massive={settingsMassive.underTheme}
 					name={"Список подтем"}
 					group={"underTheme"}
 				/>
