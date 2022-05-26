@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
 import firebase from "firebase/compat/app";
 import {Settings} from "../../../Repeat_components/MassiveSettings";
-import "./index.scss";
 import {useSelector} from "react-redux";
+import "./index.scss";
 
 export const ChatSet = () => {
 	const [value, setValue] = useState("");

@@ -32,7 +32,6 @@ export const Active = () => {
 					setMessages([data]);
 				});
 		} else {
-			console.log("mir");
 			firebase
 				.database()
 				.ref(`/TechSupport/`)

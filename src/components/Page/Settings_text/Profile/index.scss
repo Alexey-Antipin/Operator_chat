@@ -15,6 +15,20 @@
 		margin-top: 15px;
 		margin-bottom: 15px;
 		.avatar__png {
+			height: 200px;
+			width: 200px;
+			border: 2px solid black;
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+		.avatar__not-png {
+			display: flex;
+			height: 200px;
+			width: 200px;
+			border: 2px solid black;
+			align-items: center;
+			justify-content: center;
+			background: rgba(239, 239, 250, 0.767);
 			margin-left: 10px;
 			margin-right: 10px;
 		}

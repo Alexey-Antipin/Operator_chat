@@ -5,8 +5,9 @@ import firebase from "firebase/compat/app";
 import {Provider} from "react-redux";
 import store, {persistor} from "./sagas/store";
 import {PersistGate} from "redux-persist/integration/react";
+import {getStorage} from "firebase/storage";
 
-firebase.initializeApp({
+const firebaseConfig = {
 	apiKey: "AIzaSyB-bXyy75f7RIT1JuwUdNk5EkqqYoKORxs",
 	authDomain: "react-project-firebase-b7db3.firebaseapp.com",
 	databaseURL:
@@ -15,7 +16,10 @@ firebase.initializeApp({
 	storageBucket: "react-project-firebase-b7db3.appspot.com",
 	messagingSenderId: "515018556636",
 	appId: "1:515018556636:web:e5fb4e3014915d8fd1e019",
-});
+};
+
+const app = firebase.initializeApp(firebaseConfig);
+export const storage = getStorage(app);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
