@@ -1,4 +1,5 @@
 import firebase from "firebase/compat/app";
+import {useEffect, useState} from "react";
 import "./index.scss";
 
 export const Settings = ({
@@ -13,26 +14,42 @@ export const Settings = ({
 	classButtonDelete,
 	classButton,
 }) => {
+	const [indexUser, setIndex] = useState("");
+
+	const findUserFirebase = () => {
+		firebase
+			.database()
+			.ref(`Profile`)
+			.orderByChild("operatorId")
+			.equalTo("stierlitzotto21@gmail.com")
+			.on("child_added", function (snapshot) {
+				const index = snapshot.val().index;
+				setIndex(index);
+			});
+	};
+
+	useEffect(() => {
+		findUserFirebase();
+	}, []);
+
 	const addWordClick = () => {
 		firebase
 			.database()
-			.ref(`/settings/${group}/`)
-			.limitToLast(1)
-			.once("child_added", function (snapshot) {
-				const key = snapshot.key;
-				const massiveKey = Number(key) + 1;
+			.ref(`Profile/${indexUser}/settings/${group}`)
+			.once("value", (snapshot) => {
+				const data = snapshot.val();
+				const key = data.length;
 				firebase
 					.database()
-					.ref(`/settings/${group}/${massiveKey}`)
+					.ref(`Profile/${indexUser}/settings/${group}/${key}`)
 					.set(1);
-				return;
 			});
 	};
 
 	const removeWordClick = (index) => {
 		const removeWord = firebase
 			.database()
-			.ref(`/settings/${group}/${index}`);
+			.ref(`Profile/${indexUser}/settings/${group}/${index}`);
 		removeWord.remove().then(function () {
 			console.log("Remove succeeded.");
 		});

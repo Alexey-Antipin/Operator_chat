@@ -1,12 +1,13 @@
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import firebase from "firebase/compat/app";
 import {Settings} from "../../../Repeat_components/MassiveSettings";
 import {useSelector} from "react-redux";
+import {themeContext} from "../../../../context";
 import "./index.scss";
 
 export const ChatSet = () => {
-	const [value, setValue] = useState("");
 	const [settingsMassive, setSettingsMassive] = useState([]);
+	const {autoText, setAutoText} = useContext(themeContext);
 	const operatorId = useSelector((state) => state.reducer);
 
 	const firebaseSettings = () => {
@@ -23,10 +24,10 @@ export const ChatSet = () => {
 
 	useEffect(() => {
 		firebaseSettings();
-	}, []);
+	}, [settingsMassive]);
 
 	return (
-		<div>
+		<>
 			<div className="text">Настройки диалогов</div>
 
 			<div className="array__settings">
@@ -53,10 +54,10 @@ export const ChatSet = () => {
 				<div>Автоматическое приветствие:</div>
 				<input
 					className="text__input"
-					value={value}
-					onChange={(e) => setValue(e.target.value)}
+					value={autoText}
+					onChange={(e) => setAutoText(e.target.value)}
 				/>
 			</div>
-		</div>
+		</>
 	);
 };

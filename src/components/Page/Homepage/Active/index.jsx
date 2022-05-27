@@ -10,12 +10,13 @@ import {Panel} from "../Panel";
 import {useSelector} from "react-redux";
 
 export const Active = () => {
-	const [messages, setMessages] = useState([]);
 	const [indexUser, setIndexUser] = useState([]);
 	const [filterMess, setFilterMess] = useState();
 	const [hasMore, setHasMore] = useState(false);
 	const [counter, setCounter] = useState(null);
-	const {messUser, setMessUser, value} = useContext(themeContext);
+	const [messages, setMessages] = useState([]);
+	const {client, setClient, messUser, setMessUser, value} =
+		useContext(themeContext);
 	const authTrue = useSelector((state) => state.reducer);
 	const navigate = useNavigate();
 
@@ -23,7 +24,7 @@ export const Active = () => {
 		if (value) {
 			const messageFirebase = firebase.database().ref("/TechSupport/");
 			messageFirebase
-				.orderByChild("ReqText")
+				.orderByChild("theme")
 				.startAt(value)
 				.endAt(value + "\uf8ff")
 				.once("child_added", (snapshot) => {
@@ -62,7 +63,7 @@ export const Active = () => {
 			.ref(`/TechSupport/${index}/message/`)
 			.once("value", (snapshot) => {
 				const data = snapshot.val();
-				setMessages(data);
+				setClient(data);
 				navigate(`dialog/${index}`);
 			})
 			.then(() => {
@@ -88,7 +89,7 @@ export const Active = () => {
 		/>
 	) : (
 		<div className="dialog">
-			<MapUserDialog massive={messages} />
+			<MapUserDialog massive={client} />
 			<Panel indexUser={indexUser} />
 		</div>
 	);

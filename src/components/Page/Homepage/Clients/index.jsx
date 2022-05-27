@@ -8,17 +8,16 @@ import {useNavigate} from "react-router-dom";
 import {themeContext} from "../../../../context";
 
 export const Clients = () => {
-	const authTrue = useSelector((state) => state.reducer);
+	const operatorId = useSelector((state) => state.reducer);
 	const [clientsMessages, setClientsMessages] = useState([]);
 	const [filterMessages, setFilterMessages] = useState([]);
 	const [hasMore, setHasMore] = useState(false);
 	const [counter, setCounter] = useState(null);
-	const {setClient, setMessUser} = useContext(themeContext);
+	const {autoText, setAutoText, setClient, setMessUser} =
+		useContext(themeContext);
 	const navigate = useNavigate();
 
 	const firebaseClients = debounce(() => {
-		console.log("mir");
-
 		firebase
 			.database()
 			.ref(`/TechSupport/`)
@@ -42,18 +41,33 @@ export const Clients = () => {
 		chatFirebase.update({
 			status: 0,
 			view: "active",
-			operatorId: authTrue.userEmail,
+			operatorId: operatorId.userEmail,
 		});
 		firebase
 			.database()
-			.ref(`/TechSupport/${index}/message/`)
+			.ref(`/TechSupport/${index}/`)
+			.orderByChild("message")
 			.once("value", (snapshot) => {
 				const data = snapshot.val();
-				setClient(data);
-				navigate(`/homePage/active/dialog/${index}`);
-			})
-			.then(() => {
-				setMessUser(false);
+				const key = data.message.length;
+				firebase
+					.database()
+					.ref(`/TechSupport/${index}/message/${key}`)
+					.set({
+						content: autoText,
+						timestamp: "2022",
+						writtenBy: "Alex",
+					});
+				firebase
+					.database()
+					.ref(`/TechSupport/${index}/message/`)
+					.once("value", (snapshot) => {
+						const data = snapshot.val();
+						setClient(data);
+						navigate(`/homePage/active/dialog/${index}`);
+						setMessUser(false);
+					});
+				setAutoText("");
 			});
 	};
 
