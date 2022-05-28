@@ -14,7 +14,6 @@ export const Queue = () => {
 			.equalTo(1)
 			.on("child_added", (snapshot) => {
 				const data = snapshot.val().status;
-				console.log("data", data);
 				setQueue((queue) => [...queue, data]);
 			});
 	}, 500);

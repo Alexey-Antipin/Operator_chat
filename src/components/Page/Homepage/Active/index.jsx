@@ -60,16 +60,15 @@ export const Active = () => {
 	const Btn1Click = (index) => {
 		firebase
 			.database()
-			.ref(`/TechSupport/${index}/message/`)
-			.once("value", (snapshot) => {
+			.ref(`/TechSupport/${index}/`)
+			.on("value", (snapshot) => {
 				const data = snapshot.val();
+				console.log(data);
 				setClient(data);
 				navigate(`dialog/${index}`);
-			})
-			.then(() => {
-				setIndexUser(index);
-				setMessUser(false);
 			});
+		setIndexUser(index);
+		setMessUser(false);
 	};
 
 	const Btn2Click = (index) => {
