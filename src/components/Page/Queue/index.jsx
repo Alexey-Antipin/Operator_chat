@@ -1,22 +1,23 @@
 import "./index.scss";
 import firebase from "firebase/compat/app";
+import {debounce} from "lodash";
 import {useEffect, useState} from "react";
 
 export const Queue = () => {
 	const [queue, setQueue] = useState([]);
 
-	const queuePeople = () => {
+	const queuePeople = debounce(() => {
 		firebase
 			.database()
 			.ref(`/TechSupport/`)
 			.orderByChild("status")
 			.equalTo(1)
-			.on("value", (snapshot) => {
-				const data = snapshot.val();
-				const answer = data.length;
-				setQueue([answer]);
+			.on("child_added", (snapshot) => {
+				const data = snapshot.val().status;
+				console.log("data", data);
+				setQueue((queue) => [...queue, data]);
 			});
-	};
+	}, 500);
 
 	useEffect(() => {
 		queuePeople();
@@ -24,13 +25,7 @@ export const Queue = () => {
 
 	return (
 		<div className="queue">
-			{queue?.map((status, index) => {
-				return (
-					<div key={index}>
-						<>Клиентов в очереди:{status}</>
-					</div>
-				);
-			})}
+			<>Клиентов в очереди:{queue.length}</>
 		</div>
 	);
 };

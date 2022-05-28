@@ -5,6 +5,8 @@ import {ChatSet} from "../../Settings_text/ChatSet";
 import {Profile} from "../../Settings_text/Profile";
 import {useSelector} from "react-redux";
 import Modal from "react-modal";
+import moment from "moment";
+import "moment/locale/ru";
 import "./index.scss";
 
 export const Panel = ({indexUser}) => {
@@ -36,7 +38,11 @@ export const Panel = ({indexUser}) => {
 			firebase
 				.database()
 				.ref(`/TechSupport/${indexUser}/message/${keyIndexMess}`)
-				.set({content: "Hallo", timestamp: "2022", writtenBy: "Alex"});
+				.set({
+					content: "Hallo",
+					timestamp: moment().format("L"),
+					writtenBy: "Alex",
+				});
 		}
 	}, 500);
 
@@ -107,7 +113,7 @@ export const Panel = ({indexUser}) => {
 						onClick={() => setIsOpen(false)}>
 						close
 					</button>
-					<Profile />
+					<Profile setIsOpen={setIsOpen} />
 					<ChatSet />
 				</Modal>
 			</div>

@@ -4,22 +4,28 @@ import {storage} from "../../../..";
 import {useSelector} from "react-redux";
 import "./index.scss";
 
-export const Profile = () => {
+export const Profile = ({setIsOpen}) => {
 	const [image, setImage] = useState(null);
+	const [photo, setPhoto] = useState(null);
 	const user = useSelector((state) => state.reducer);
 	const imageRef = ref(storage, user.UserEmail + "/images/");
 
 	const upload = () => {
-		if (image == null) return;
-		const imageRef = ref(storage, user.UserEmail + `/images/` + image.name);
-		uploadBytes(imageRef, image);
+		if (image !== null) {
+			const imageRef = ref(
+				storage,
+				user.UserEmail + `/images/` + image.name
+			);
+			uploadBytes(imageRef, image);
+		}
+		setIsOpen(false);
 	};
 
 	useEffect(() => {
 		listAll(imageRef).then((response) => {
 			response.items.forEach((item) => {
 				getDownloadURL(item).then((url) => {
-					setImage(url);
+					setPhoto(url);
 				});
 			});
 		});
@@ -35,8 +41,8 @@ export const Profile = () => {
 			<div className="avatar">
 				<div>Аватар</div>
 				<div>
-					{image ? (
-						<img className="avatar__png" src={image} alt="Фото" />
+					{photo ? (
+						<img className="avatar__png" src={photo} alt="Фото" />
 					) : (
 						<div className="avatar__not-png">Фото</div>
 					)}
