@@ -4,25 +4,30 @@ import {debounce} from "lodash";
 import firebase from "firebase/compat/app";
 import {MapUsers} from "../../../Repeat_components/MapUsers";
 import {MapUserDialog} from "../Dialog";
-import {ThemeContext} from "../../../../context";
+import {themeContext} from "../../../../context";
 import {useNavigate} from "react-router-dom";
-import {FaUserAlt} from "react-icons/fa";
 import {Panel} from "../Panel";
+import {useSelector} from "react-redux";
 
 export const Active = () => {
-	const [Messages, setMessages] = useState([]);
-	const [OperatorMess, setOperatorMess] = useState();
-	const [Key, setKey] = useState("0");
-	const {MessUser, setMessUser, value} = useContext(ThemeContext);
+	const [indexUser, setIndexUser] = useState([]);
+	const [filterMess, setFilterMess] = useState();
+	const [hasMore, setHasMore] = useState(false);
+	const [counter, setCounter] = useState(null);
+	const [messages, setMessages] = useState([]);
+	const {client, setClient, messUser, setMessUser, value} =
+		useContext(themeContext);
+	const authTrue = useSelector((state) => state.reducer);
 	const navigate = useNavigate();
 
-	const FirebaseMessage = debounce(() => {
+	const firebaseActive = debounce(() => {
 		if (value) {
-			const Message = firebase.database().ref("/TechSupport/");
-			Message.orderByChild("ReqText")
+			const messageFirebase = firebase.database().ref("/TechSupport/");
+			messageFirebase
+				.orderByChild("theme")
 				.startAt(value)
 				.endAt(value + "\uf8ff")
-				.on("child_added", (snapshot) => {
+				.once("child_added", (snapshot) => {
 					const data = snapshot.val();
 					console.log(data);
 					setMessages([data]);
@@ -30,71 +35,63 @@ export const Active = () => {
 		} else {
 			firebase
 				.database()
-				.ref(`/TechSupport/${Key}`)
-				.orderByChild("ReqText")
-				.once("value", (snapshot) => {
+				.ref(`/TechSupport/`)
+				.orderByChild("index")
+				.startAfter(counter)
+				.limitToFirst(10)
+				.on("child_added", (snapshot) => {
 					const data = snapshot.val();
-					const newKey = snapshot.key;
-					setKey(Number(newKey) + 1);
-					setMessages([...Messages, data]);
-					console.log("data", data);
+					setMessages((messages) => [...messages, data]);
+					setCounter(counter + 9);
+					setHasMore(true);
 				});
+			const arrActive = messages.filter(
+				(e) =>
+					e.operatorId === authTrue.userEmail && e.view === "active"
+			);
+			setFilterMess(arrActive);
 		}
 	}, 300);
 
 	useEffect(() => {
-		FirebaseMessage();
+		firebaseActive();
 	}, [value]);
 
-	// const FilterSearch = Messages?.filter((event) => {
-	// 	return event.content.includes(value) || event.writtenBy.includes(value);
-	// });
-
 	const Btn1Click = (index) => {
-		const Message = firebase
+		firebase
 			.database()
-			.ref(`/TechSupport/${index}/task/mess/`);
-		Message.once("value", (snapshot) => {
-			const data = snapshot.val();
-			setOperatorMess(data);
-			navigate(`dialog/${index}`);
-		}).then(() => {
-			setMessUser(true);
-		});
+			.ref(`/TechSupport/${index}/`)
+			.on("value", (snapshot) => {
+				const data = snapshot.val();
+				console.log(data);
+				setClient(data);
+				navigate(`dialog/${index}`);
+			});
+		setIndexUser(index);
+		setMessUser(false);
 	};
-	const Btn2Click = () => {};
 
-	const MessageUsers = !MessUser ? (
-		<>
-			<MapUsers
-				ScrollBar={"ScrollBar__Messages"}
-				FirebaseMessage={FirebaseMessage}
-				BlockMap={"BlockMap"}
-				BlockPhoto={"BlockPhoto"}
-				CPhoto={"CPhoto"}
-				Photo={FaUserAlt}
-				CRequest_Text={"CRequest_Text"}
-				Massive={Messages}
-				BlockButton={"BlockButton"}
-				ButtonW1={"Продолжить"}
-				ButtonW2={"Сохранить"}
-				TimeMiss={"Пока нету"}
-				b1={"b1"}
-				b2={"b2"}
-				b3={"b3"}
-				Btn1Click={Btn1Click}
-				Btn2Click={Btn2Click}
-			/>
-		</>
+	const Btn2Click = (index) => {
+		firebase
+			.database()
+			.ref(`/TechSupport/${index}/`)
+			.update({view: "save"});
+	};
+
+	const messageUsers = messUser ? (
+		<MapUsers
+			firebaseMessage={firebaseActive}
+			massive={filterMess}
+			Btn1Click={(index) => Btn1Click(index)}
+			Btn2Click={(index) => Btn2Click(index)}
+			hasMore={hasMore}
+		/>
 	) : (
-		<div className="Panel__Footer">
-			<MapUserDialog
-				FirebaseMessage={FirebaseMessage}
-				Massive={OperatorMess}
-			/>
-			<Panel />
+		<div className="dialog">
+			<MapUserDialog massive={client} />
+			<Panel indexUser={indexUser} />
 		</div>
 	);
 
-	return <>{MessageUsers}</>;
+	return <>{messageUsers}</>;
 };

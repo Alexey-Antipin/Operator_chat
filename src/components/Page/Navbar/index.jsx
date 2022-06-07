@@ -4,62 +4,59 @@ import {useDispatch} from "react-redux";
 import {SearchUser} from "../../Repeat_components/SearchUser";
 import {Route, Routes} from "react-router-dom";
 import {useContext} from "react";
-import {ThemeContext} from "../../../context/index.js";
+import {themeContext} from "../../../context/index.js";
+import {Queue} from "../Queue";
 
 export const Navbar = () => {
 	const dispatch = useDispatch();
-	const {setValue, value} = useContext(ThemeContext);
+	const {setValue, value} = useContext(themeContext);
 
-	const TokenOutUser = () => {
+	const tokenOutUser = () => {
 		dispatch({type: "TOKEN_OUT_USER", payload: false});
 	};
 
 	return (
-		<div className="Navbar__User">
+		<div className="navbar">
 			<ButtonTurn
-				YourClick={TokenOutUser}
-				ClassButton={"OperatorButton"}
-				ClassName={"OperatorName"}
-				ClassChildren={"OperatorChildren"}
-				Word={"Operator@mail.ru"}
-				Children={"Выход"}
-				URL_LINK={"/Auth"}
+				YourClick={tokenOutUser}
+				classButton={"operator__button"}
+				className={"operator__name"}
+				word={"Operator@mail.ru"}
+				url={"/auth"}
 			/>
 			<Routes>
 				<Route
-					path="Active/*"
-					element={
-						<SearchUser
-							classBlock={"Block"}
-							classWord={"Word"}
-							setValue={setValue}
-							value={value}
-						/>
-					}
+					path="active/"
+					element={<SearchUser setValue={setValue} value={value} />}
 				/>
 
 				{/* <Route
-					path="Ending/*"
+					path="ending/"
 					element={
-						<SearchUser
-							classBlock={"Block"}
-							classWord={"Word"}
+						<SearchUser							
 							setValue={setValue}
 							value={value}
 						/>
 					}
 				/>
 				<Route
-					path="Saving/*"
+					path="saving/"
 					element={
 						<SearchUser
-							classBlock={"Block"}
-							classWord={"Word"}
 							setValue={setValue}
 							value={value}
 						/>
 					}
 				/> */}
+				<Route
+					path="clients"
+					element={
+						<>
+							<Queue />
+							<SearchUser setValue={setValue} value={value} />
+						</>
+					}
+				/>
 			</Routes>
 		</div>
 	);

@@ -1,41 +1,39 @@
 import "./index.scss";
 import {ButtonTurn} from "../../Repeat_components/ButtonTurn";
 import {FiSave} from "react-icons/fi";
+import {IoIosMan} from "react-icons/io";
 import {VscVmActive} from "react-icons/vsc";
 import {IoIosCheckmarkCircleOutline} from "react-icons/io";
 import {useContext} from "react";
-import {ThemeContext} from "../../../context";
+import {themeContext} from "../../../context";
 
 export const LeftPage = () => {
-	const {setMessUser} = useContext(ThemeContext);
-
-	const MenuClick = () => {
-		return setMessUser(false);
+	const {setMessUser} = useContext(themeContext);
+	const clickMess = () => {
+		setMessUser(true);
 	};
-
 	return (
-		<div className="Block__Buttons">
+		<div className="block__buttons">
 			<ButtonTurn
-				ClassButton={"ClassButton"}
-				ClassName={"ClassName"}
-				Word={"Активные"}
-				Children={<VscVmActive className="Icons" />}
-				YourClick={MenuClick}
-				URL_LINK={"Active"}
+				word={"Активные"}
+				children={<VscVmActive className="icons" />}
+				click={clickMess}
+				url={"active"}
 			/>
 			<ButtonTurn
-				ClassButton={"ClassButton"}
-				ClassName={"ClassName"}
-				Word={"Завершенные"}
-				Children={<IoIosCheckmarkCircleOutline className="Icons" />}
-				URL_LINK={"Ending"}
+				word={"Завершённые"}
+				children={<IoIosCheckmarkCircleOutline className="icons" />}
+				url={"ending"}
 			/>
 			<ButtonTurn
-				ClassButton={"ClassButton"}
-				ClassName={"ClassName"}
-				Word={"Сохраненные"}
-				Children={<FiSave className="Icons" />}
-				URL_LINK={"Saving"}
+				word={"Сохранённые"}
+				children={<FiSave className="icons" />}
+				url={"saving"}
+			/>
+			<ButtonTurn
+				word={"Клиенты"}
+				children={<IoIosMan className="icons" />}
+				url={"clients"}
 			/>
 		</div>
 	);

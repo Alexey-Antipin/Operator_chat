@@ -1,9 +1,9 @@
-.Page {
+.page {
 	display: flex;
 	flex-direction: row;
 	min-height: 100vh;
 
-	.Left__Block {
+	.left__block {
 		display: flex;
 		flex-direction: row;
 		border-right: solid rgb(226, 223, 223) 2px;
@@ -11,7 +11,7 @@
 		width: 15%;
 	}
 
-	.Right__Block {
+	.right__block {
 		display: flex;
 		flex-direction: column;
 		width: 85%;

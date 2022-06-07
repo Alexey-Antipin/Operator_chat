@@ -1,0 +1,30 @@
+.class__container {
+	display: flex;
+	flex-direction: column;
+	width: 25%;
+	.class__group {
+		color: rgb(129, 255, 255);
+		font-size: 25px;
+	}
+
+	.class__map {
+		.class__block-button {
+			display: flex;
+			font-size: 25px;
+			color: rgb(216, 255, 255);
+			.class__button-delete {
+				font-weight: bold;
+				width: 50px;
+				border-radius: 15px;
+				background-color: rgba(215, 241, 255, 0.904);
+			}
+		}
+	}
+	.class__button-add {
+		font-size: 20px;
+		padding: 5px;
+		font-weight: bold;
+		border-radius: 15px;
+		background-color: rgb(155, 231, 245);
+	}
+}

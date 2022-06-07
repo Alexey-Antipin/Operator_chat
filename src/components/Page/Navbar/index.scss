@@ -1,4 +1,4 @@
-.Navbar__User {
+.navbar {
 	display: flex;
 	justify-content: flex-start;
 	flex-direction: row-reverse;
@@ -9,20 +9,7 @@
 	margin-bottom: 15px;
 	height: 100px;
 
-	.Block {
-		display: flex;
-		justify-content: flex-end;
-		margin-right: 70px;
-		width: 100%;
-		.Word {
-			font-size: 25px;
-		}
-		.Input {
-			margin-left: 15px;
-		}
-	}
-
-	.OperatorButton {
+	.operator__button {
 		margin-left: 15px;
 		margin-right: 15px;
 		border-radius: 15px;
@@ -31,7 +18,7 @@
 		width: 120px;
 	}
 
-	.OperatorName {
+	.operator__name {
 		font-size: 35px;
 	}
 }

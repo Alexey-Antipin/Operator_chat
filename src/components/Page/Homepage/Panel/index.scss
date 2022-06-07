@@ -1,4 +1,4 @@
-.Form {
+.form {
 	display: flex;
 	justify-content: center;
 	flex-direction: row;
@@ -6,36 +6,46 @@
 	background-color: rgba(170, 217, 255, 0.61);
 	height: 30%;
 	width: 100%;
-	.Form__Block {
+	.form__block {
 		display: flex;
-		width: 40%;
-		.Block__TextArea {
-			.Block__Text {
+		width: 30%;
+		.answer {
+			.answer__text {
 				font-size: 25px;
 			}
-			.Block__Area {
+			.answer__textarea {
 				font-size: 25px;
 				width: 350px;
 			}
 		}
 	}
 
-	.Block {
+	.option {
 		display: flex;
-		width: 50%;
-		.Block__Text {
+		width: 40%;
+		.option__text {
 			font-size: 25px;
 		}
-		.Select {
-			height: 45px;
+		.option__select {
+			height: 50px;
 			width: 300px;
 			font-size: 25px;
 		}
-		.Block__Button {
+		.option__button {
 			padding: 20px;
-			margin-left: 15px;
+			margin-top: 15px;
+			margin-left: 25px;
 			border-radius: 15px;
 			font-size: 25px;
 		}
+	}
+}
+
+.ReactModal__Content {
+	.modal__button {
+		height: 50px;
+		width: 250px;
+		font-size: 25px;
+		background-color: antiquewhite;
 	}
 }

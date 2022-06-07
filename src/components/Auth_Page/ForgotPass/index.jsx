@@ -6,15 +6,15 @@ import "react-toastify/dist/ReactToastify.css";
 import "./index.scss";
 
 export const ForgotPass = () => {
-	const [NewPass, setNewPass] = useState("");
+	const [newPass, setNewPass] = useState("");
 	const dispatch = useDispatch();
 
 	const ForgotPassword = () => {
 		try {
-			if (NewPass !== "") {
+			if (newPass !== "") {
 				dispatch({
 					type: "FORGOT_PASS_USER",
-					payload: NewPass,
+					payload: newPass,
 				});
 			}
 		} catch (error) {
@@ -31,43 +31,39 @@ export const ForgotPass = () => {
 	};
 
 	return (
-		<div className="Form">
+		<div className="form">
 			<form onSubmit={(e) => e.preventDefault()}>
-				{/* Забыли пароль */}
-				<div className="Form__label__Pass">Забыли пароль</div>
+				<div className="form__label-pass">Забыли пароль</div>
 
-				{/* Почта */}
 				<div>
-					<label className="Form__label" htmlFor="email">
+					<label className="form__label" htmlFor="email">
 						Почта
 					</label>
 					<input
 						id="email"
 						name="email"
 						type="email"
-						className="Form__input"
+						className="form__input"
 						onChange={(e) => setNewPass(e.target.value)}
-						value={NewPass}
+						value={newPass}
 					/>
 				</div>
 
-				{/* Отправить ссылку для восстановления */}
 				<button
 					onClick={ForgotPassword}
-					className="Form__buttonRecovery">
+					className="form__button-recovery">
 					Отправить ссылку для восстановления
 				</button>
 
 				<ToastContainer />
 
-				{/*Войти , Регистрация */}
-				<div className="Form__Container">
-					<button className="Form__button__sign">
-						<Link to="/Auth">Войти</Link>
+				<div className="form__container">
+					<button className="form__button-sign">
+						<Link to="/auth">Войти</Link>
 					</button>
 
-					<button className="Form__buttonRegistration">
-						<Link to="/Login">Регистрация</Link>
+					<button className="form__button-registration">
+						<Link to="/login">Регистрация</Link>
 					</button>
 				</div>
 			</form>

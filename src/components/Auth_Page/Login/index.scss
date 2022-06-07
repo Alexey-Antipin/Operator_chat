@@ -1,0 +1,44 @@
+.formik {
+	display: flex;
+	height: calc(90vh - 0px);
+	align-items: center;
+	justify-content: center;
+	.formik__text {
+		font-size: 45px;
+		font-weight: bold;
+		margin-bottom: 25px;
+	}
+	.formik__input {
+		display: flex;
+		margin-top: 5px;
+		background-color: rgb(212, 255, 241);
+		border-radius: 15px;
+		font-size: 25px;
+	}
+	.formik__error {
+		width: 40vh;
+		word-break: break-word;
+	}
+	.formik__label {
+		font-size: 25px;
+	}
+	.formik__button-flex {
+		display: flex;
+		justify-content: flex-end;
+		margin-top: 15px;
+		margin-bottom: 15px;
+		.formik__button {
+			margin-top: 5px;
+		}
+	}
+	.formik__container {
+		display: flex;
+		justify-content: space-between;
+		.formik__button__sign {
+			margin-top: 15px;
+		}
+		.formik__button__forgotPass {
+			margin-top: 15px;
+		}
+	}
+}

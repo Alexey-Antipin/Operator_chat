@@ -48,23 +48,23 @@ export function* AuthUser({payload}) {
 				payload.password.trim()
 			);
 
-		const Token = yield firebase.auth().currentUser.getIdToken(true);
+		const token = yield firebase.auth().currentUser.getIdToken(true);
 		const user = firebase.auth().currentUser;
-		const UserEmail = user.email;
+		const userEmail = user.email;
 
 		yield put({
 			type: "TOKEN_USER",
-			payload: Token,
+			payload: token,
 		});
 		yield put({
 			type: "USER_UID",
-			payload: UserEmail,
+			payload: userEmail,
 		});
 		yield put({
 			type: "SUCCESSFUL_USER_YES",
 			payload: {
-				AuthSuccessfulTrue: true,
-				AuthSuccessfulFalse: false,
+				authSuccessfulTrue: true,
+				authSuccessfulFalse: false,
 			},
 		});
 	} catch (error) {
@@ -73,8 +73,8 @@ export function* AuthUser({payload}) {
 		yield put({
 			type: "SUCCESSFUL_USER_NO",
 			payload: {
-				AuthSuccessfulTrue: false,
-				AuthSuccessfulFalse: true,
+				authSuccessfulTrue: false,
+				authSuccessfulFalse: true,
 			},
 		});
 	}
@@ -101,9 +101,7 @@ export function* ForgotPasswordUser({payload}) {
 }
 
 export function* UpdatePasswordUser({payload}) {
-	// const urlParams = new URLSearchParams(window.location.search)
-	// const oobCode = urlParams.get('oobCode')
-	const password = payload.New_password;
+	const password = payload.newPassword;
 	const oobCode = payload.oobCode;
 
 	try {

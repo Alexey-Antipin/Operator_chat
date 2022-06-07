@@ -1,24 +1,20 @@
-.ScrollBar_Dialog {
+.scroll {
 	overflow-y: scroll;
 	width: 98%;
 	height: 60%;
 	margin: 15px;
 
-	.BlockMapUser {
+	.block__text {
 		display: flex;
 		flex-direction: column;
+		color: black;
 		border: rgb(202, 202, 255) 2px solid;
 		height: 150px;
 		background-color: rgb(186, 223, 255);
 		margin-bottom: 15px;
-
-		.CwrittenBy {
-		}
-
-		.Ccontent {
-		}
-
-		.Ctimestamp {
-		}
+	}
+	.dialog-end {
+		text-align: center;
+		font-size: 25px;
 	}
 }

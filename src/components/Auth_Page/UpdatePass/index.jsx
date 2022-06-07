@@ -1,12 +1,12 @@
 import React from "react";
 import {ToastContainer} from "react-toastify";
 import {Link, useNavigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import * as Yup from "yup";
 import {useFormik} from "formik";
 import {useSearchParams} from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 import {Button} from "reactstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.scss";
 
 export const UpdatePass = () => {
@@ -22,8 +22,8 @@ export const UpdatePass = () => {
 	};
 
 	const initialValues = {
-		New_password: "",
-		Repeat_password: "",
+		newPassword: "",
+		repeatPassword: "",
 	};
 
 	const dispatch = useDispatch();
@@ -31,13 +31,13 @@ export const UpdatePass = () => {
 	const onSubmit = (values) => {
 		dispatch({
 			type: "UPDATE_PASSWORD",
-			payload: {New_password: values.New_password, oobCode},
+			payload: {newPassword: values.newPassword, oobCode},
 		});
 	};
 
 	const validationSchema = Yup.object({
-		New_password: Yup.string().required("Обязательно"),
-		Repeat_password: Yup.string()
+		newPassword: Yup.string().required("Обязательно"),
+		repeatPassword: Yup.string()
 			.oneOf([Yup.ref("New_password")], "Пароли не совпадают")
 			.required("Обязательно"),
 	});
@@ -49,69 +49,66 @@ export const UpdatePass = () => {
 	});
 
 	return (
-		<div className="Update">
+		<div className="update">
 			<form onSubmit={formik.handleSubmit}>
-				{/* Обновить пароль */}
-				<div className="Update__label__Pass">Обновить пароль</div>
+				<div className="update__label-pass">Обновить пароль</div>
 
-				{/* Пароль */}
 				<div>
-					<div className="Update__TextPass">Пароль</div>
+					<div className="update__pass">Пароль</div>
 					<input
-						id="New_password"
-						name="New_password"
+						id="newPassword"
+						name="newPassword"
 						type="password"
-						className="Update__Pass"
+						className="update__pass"
 						onChange={formik.handleChange}
-						value={formik.values.New_password}
+						value={formik.values.newPassword}
 					/>
-					{formik.errors.New_password ? (
-						<>{formik.errors.New_password}</>
+					{formik.errors.newPassword ? (
+						<>{formik.errors.newPassword}</>
 					) : null}
 				</div>
 
-				{/* Подтверждение пароля */}
 				<div>
-					<div className="Update__TextPass">Подтверждение пароля</div>
+					<div className="update__pass-confirm">
+						Подтверждение пароля
+					</div>
 					<input
-						id="Repeat_password"
-						name="Repeat_password"
+						id="repeatPassword"
+						name="repeatPassword"
 						type="password"
-						className="Update__Pass"
+						className="update__pass"
 						onChange={formik.handleChange}
-						value={formik.values.Repeat_password}
+						value={formik.values.repeatPassword}
 					/>
-					{formik.errors.Repeat_password ? (
-						<>{formik.errors.Repeat_password}</>
+					{formik.errors.repeatPassword ? (
+						<>{formik.errors.repeatPassword}</>
 					) : null}
 				</div>
 
-				{/* Отправить ссылку для восстановления */}
 				<Button
 					type="submit"
 					color="success"
 					outline
-					className="Update__buttonRecovery"
+					className="update__button-recovery"
 					onClick={() => TransitionOnAuth()}>
 					Отправить ссылку для восстановления
 				</Button>
 
 				<ToastContainer />
 
-				{/*Войти , Регистрация */}
-				<div className="Update__Container">
+				<div className="update__container">
 					<Button
 						color="info"
 						outline
-						className="Update__button__sign">
-						<Link to="/Auth">Войти</Link>
+						className="update__button-sign">
+						<Link to="/auth">Войти</Link>
 					</Button>
 
 					<Button
 						color="info"
 						outline
-						className="Update__buttonRegistration">
-						<Link to="/Login">Регистрация</Link>
+						className="update__button-registration">
+						<Link to="/login">Регистрация</Link>
 					</Button>
 				</div>
 			</form>

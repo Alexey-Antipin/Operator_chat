@@ -1,28 +1,34 @@
 import "./index.scss";
 
-export const MapUserDialog = ({Massive}) => {
+export const MapUserDialog = ({massive}) => {
 	return (
-		<div className={"ScrollBar_Dialog"}>
-			{Massive?.map((e, index) => {
+		<div className={"scroll"}>
+			{massive?.message.map((e, index) => {
 				return (
-					<div className={"BlockMapUser"} key={index}>
+					<div className={"block__text"} key={index}>
 						<div>{index}</div>
-
-						<div className={"CwrittenBy"}>
+						<div>
 							CwrittenBy___
 							{e?.writtenBy}
 						</div>
-						<div className={"Ccontent"}>
+						<div>
 							Content___
 							{e?.content}
 						</div>
-						<div className={"Ctimestamp"}>
+						<div>
 							Timestamp___
 							{e?.timestamp}
 						</div>
 					</div>
 				);
 			})}
+			<div>
+				{massive.status === 2 ? (
+					<div className="dialog-end">Диалог завершён</div>
+				) : (
+					<></>
+				)}
+			</div>
 		</div>
 	);
 };
